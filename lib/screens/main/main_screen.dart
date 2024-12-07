@@ -123,13 +123,20 @@ class MainScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("survey_recommend_title".tr(),
-          textAlign: TextAlign.start,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text("survey_recommend_title".tr(),
+              textAlign: TextAlign.start,
+              style: const TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+              ),
+            ),
+            _detailButton(ExperimentType.SURVEY)
+          ],
         ),
         const SizedBox(height: 10,),
         ...List.generate(
@@ -148,13 +155,20 @@ class MainScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("perform_recommend_title".tr(),
-          textAlign: TextAlign.start,
-          style: const TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-            color: Colors.black,
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Text("perform_recommend_title".tr(),
+              textAlign: TextAlign.start,
+              style: const TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+              ),
+            ),
+            _detailButton(ExperimentType.PERFORM) // 전체 보기
+          ],
         ),
         const SizedBox(height: 10,),
         Row(
@@ -174,14 +188,40 @@ class MainScreen extends StatelessWidget {
     );
   }
 
+  Widget _detailButton(ExperimentType type) {
+    return GestureDetector(
+      onTap: (){
+        //TODO: 전체 보기 화면으로 이동
+        print("전체 보기, $type");
+      },
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Text("full_view".tr(),
+            style: const TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w400,
+              color: ColorStyles.gray70,
+            ),
+          ),
+          const SizedBox(width: 6,),
+          SizedBox(
+            height: 10,
+              child: SvgIcons.arrowRight
+          )
+        ],
+      ),
+    );
+  }
+
   Widget _graphicsLayout() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text("more".tr(),
+        Text("create_experiment".tr(),
           textAlign: TextAlign.start,
           style: const TextStyle(
-            fontSize: 18,
+            fontSize: 17,
             fontWeight: FontWeight.w600,
             color: Colors.black,
           ),

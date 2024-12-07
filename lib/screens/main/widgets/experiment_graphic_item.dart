@@ -65,24 +65,32 @@ class ExperimentGraphicItem extends StatelessWidget {
                   color: Colors.grey.withOpacity(0.2),
                   spreadRadius: 1,
                   blurRadius: 4,
-                  offset: Offset(0, 3), // changes position of shadow
+                  offset: const Offset(0, 3), // changes position of shadow
                 ),
               ],
             ),
-            child: Row(
-              children: [
-                Expanded(
-                  child: Text('홈으로 이동',
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        fontSize: 10,
-                        fontWeight: FontWeight.w300,
-                        color: Colors.black
+            child: GestureDetector(
+              onTap: (){
+                //TODO: 실험 생성 화면으로 이동
+                print("실헝 생성, $type");
+              },
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Text(type == ExperimentType.SURVEY
+                        ? "survey_create".tr()
+                        : "perform_create".tr(),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontSize: 10,
+                          fontWeight: FontWeight.w300,
+                          color: Colors.black
+                      ),
                     ),
                   ),
-                ),
-                SvgIcons.arrowDotted
-              ],
+                  SvgIcons.arrowDotted
+                ],
+              ),
             ),
           ),
         ],

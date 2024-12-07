@@ -4,6 +4,7 @@ class SvgIcons {
   static SvgPicture textLogo = SvgPicture.asset("assets/images/sasimee_text_logo.svg");
   static SvgPicture profile = SvgPicture.asset("assets/images/icons/ic_profile.svg");
   static SvgPicture arrowDotted = SvgPicture.asset("assets/images/icons/ic_arrow_dotted.svg");
+  static SvgPicture arrowRight = SvgPicture.asset("assets/images/icons/ic_arrow_right.svg");
 
   /// TextField
   static SvgPicture email = SvgPicture.asset("assets/images/icons/ic_email.svg");
