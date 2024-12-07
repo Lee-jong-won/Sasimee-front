@@ -4,14 +4,48 @@ import 'package:sasimee/screens/main/widgets/experiment_graphic_item.dart';
 import 'package:sasimee/screens/main/widgets/perform_item.dart';
 import 'package:sasimee/screens/main/widgets/survey_item.dart';
 import 'package:sasimee/widgets/tag_item.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../styles/color_styles.dart';
 import '../../styles/svg_icons.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
   static String routeName = "/";
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  final PageController _pageController = PageController();
+  int _currentPage = 0;
+
+  final List<String> _bannerImages = [
+    'assets/images/banners/banner_user_guide.png',
+    'assets/images/banners/banner_user_guide.png',
+    'assets/images/banners/banner_user_guide.png',
+  ];
+
+  @override
+  void initState() {
+    super.initState();
+    _pageController.addListener(() {
+      int next = _pageController.page!.round();
+      if (_currentPage != next) {
+        setState(() {
+          _currentPage = next;
+        });
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +58,7 @@ class MainScreen extends StatelessWidget {
                 children: [
                   _bannerLayout(),
                   Positioned(
-                      top: 145, // 배너와 겹치는 위치 조절
+                      top: 155, // 배너와 겹치는 위치 조절
                       left: 0,
                       right: 0,
                       bottom: 0,
@@ -77,13 +111,42 @@ class MainScreen extends StatelessWidget {
   }
 
   Widget _bannerLayout() {
-    return SizedBox(
-      width: double.infinity,
-      child: Image.asset(
-        'assets/images/banners/banner_user_guide.png',
-        fit: BoxFit.cover,
-      ),
-    );
+      return Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          SizedBox(
+            width: double.infinity,
+            height: 180, // 배너 높이 지정
+            child: PageView.builder(
+              controller: _pageController,
+              itemCount: _bannerImages.length,
+              onPageChanged: (int page) {
+                setState(() {
+                  _currentPage = page;
+                });
+              },
+              itemBuilder: (context, index) {
+                return Image.asset(
+                  _bannerImages[index],
+                  // fit: BoxFit.cover,
+                );
+              },
+            ),
+          ),
+          Positioned(
+            top: 20,
+            child: SmoothPageIndicator(
+              controller: _pageController,
+              count: _bannerImages.length,
+              effect: const WormEffect(
+                  dotHeight: 8,
+                  dotWidth: 8,
+                  dotColor: ColorStyles.layoutBackground,
+                  activeDotColor: ColorStyles.primaryOrange),
+            ),
+          ),
+        ],
+      );
   }
 
   Widget _contentLayout() {
