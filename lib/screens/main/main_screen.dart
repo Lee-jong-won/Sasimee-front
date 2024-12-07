@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:sasimee/screens/experiment/experiment_screen.dart';
 import 'package:sasimee/screens/main/widgets/experiment_graphic_item.dart';
 import 'package:sasimee/screens/main/widgets/perform_item.dart';
 import 'package:sasimee/screens/main/widgets/survey_item.dart';
@@ -10,9 +11,9 @@ import '../../styles/color_styles.dart';
 import '../../styles/svg_icons.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
-
   static String routeName = "/";
+
+  const MainScreen({super.key});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -254,8 +255,8 @@ class _MainScreenState extends State<MainScreen> {
   Widget _detailButton(ExperimentType type) {
     return GestureDetector(
       onTap: (){
-        //TODO: 전체 보기 화면으로 이동
-        print("전체 보기, $type");
+        Navigator.of(context)
+            .pushNamed(ExperimentScreen.routeName, arguments: type,);
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,

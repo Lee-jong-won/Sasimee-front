@@ -1,6 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sasimee/screens/main/main_screen.dart';
+import 'package:sasimee/widgets/tag_item.dart';
+
+import 'screens/experiment/experiment_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,6 +19,10 @@ void main() async {
 /// 라우팅 설정 (pushNamed를 통해 쉽게 화면 라우팅을 할 수 있다)
 final route = {
   MainScreen.routeName: (context) => const MainScreen(),
+  ExperimentScreen.routeName: (context) {
+    final args = ModalRoute.of(context)!.settings.arguments as ExperimentType;
+    return ExperimentScreen(type: args);
+  },
 };
 
 class SasimeeApp extends StatelessWidget {
