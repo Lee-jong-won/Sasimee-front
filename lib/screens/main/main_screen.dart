@@ -1,6 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:sasimee/screens/experiment/experiment_screen.dart';
 import 'package:sasimee/screens/main/widgets/experiment_graphic_item.dart';
 import 'package:sasimee/screens/main/widgets/perform_item.dart';
 import 'package:sasimee/screens/main/widgets/survey_item.dart';
@@ -9,6 +8,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../styles/color_styles.dart';
 import '../../styles/svg_icons.dart';
+import 'experiment/experiment_screen.dart';
 
 class MainScreen extends StatefulWidget {
   static String routeName = "/";

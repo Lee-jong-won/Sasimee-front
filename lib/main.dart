@@ -1,9 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:sasimee/screens/main/experiment/experiment_screen.dart';
 import 'package:sasimee/screens/main/main_screen.dart';
 import 'package:sasimee/widgets/tag_item.dart';
-
-import 'screens/experiment/experiment_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

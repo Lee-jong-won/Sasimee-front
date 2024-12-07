@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:sasimee/screens/experiment/survey_experiment_view.dart';
+import 'package:sasimee/screens/main/experiment/survey_experiment_view.dart';
 import 'package:sasimee/styles/color_styles.dart';
 
-import '../../styles/svg_icons.dart';
-import '../../widgets/tag_item.dart';
+import '../../../styles/svg_icons.dart';
+import '../../../widgets/tag_item.dart';
 
 class ExperimentScreen extends StatelessWidget {
   static String routeName = "/experiment";

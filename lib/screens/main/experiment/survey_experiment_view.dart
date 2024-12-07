@@ -2,8 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sasimee/styles/svg_icons.dart';
 
-import '../../styles/color_styles.dart';
-import '../main/widgets/survey_item.dart';
+import '../../../styles/color_styles.dart';
+import '../widgets/survey_item.dart';
 
 class SurveyExperimentView extends StatelessWidget {
   const SurveyExperimentView({super.key});
