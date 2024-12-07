@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sasimee/screens/main/experiment/perform_experiment_view.dart';
 import 'package:sasimee/screens/main/experiment/survey_experiment_view.dart';
 import 'package:sasimee/styles/color_styles.dart';
 
@@ -22,10 +23,10 @@ class ExperimentScreen extends StatelessWidget {
       initialIndex: type == ExperimentType.SURVEY ? 0 : 1,
       child: Scaffold(
         appBar: _appBar(),
-        body: TabBarView(
+        body: const TabBarView(
           children: [
-            const SurveyExperimentView(),
-            Container(color: Colors.black12,),
+            SurveyExperimentView(), // 설문형
+            PerformExperimentView(), // 수행형
           ],
         ),
       ),
