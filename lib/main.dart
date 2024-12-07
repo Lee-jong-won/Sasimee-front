@@ -1,11 +1,16 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sasimee/screens/main/main_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(
-    SasimeeApp(),
-  );
+  await EasyLocalization.ensureInitialized();
+  runApp(EasyLocalization(
+    supportedLocales: const [Locale('ko')], // 지원 언어 목록
+    path: 'assets/translations', // 번역 파일 위치
+    fallbackLocale: const Locale('ko'), // 기본 언어 설정
+    child: SasimeeApp(),
+  ));
 }
 
 /// 라우팅 설정 (pushNamed를 통해 쉽게 화면 라우팅을 할 수 있다)
@@ -20,7 +25,7 @@ class SasimeeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Sasimee',
+      title: 'app_name'.tr(),
       theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
           useMaterial3: true,
@@ -28,6 +33,8 @@ class SasimeeApp extends StatelessWidget {
       ),
       initialRoute: MainScreen.routeName,
       routes: route,
+      localizationsDelegates: context.localizationDelegates,
+      supportedLocales: context.supportedLocales,
     );
   }
 }

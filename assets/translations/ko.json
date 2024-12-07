@@ -1,3 +1,14 @@
 {
-  "app_name": "Sasimee"
+  "app_name": "Sasimee",
+
+  "full_view": "전체 보기",
+  "create_experiment": "사회·심리 실험 올리기",
+
+  "survey_recommend_title": "추천하는 설문형 사회·심리 실험",
+  "survey_description": "손쉬운 참여와\n스마트한 설문지 생성",
+  "survey_create": "설문형 생성",
+
+  "perform_recommend_title": "추천하는 수행형 사회·심리 실험",
+  "perform_description": "신뢰를 바탕으로\n의미 있는 결과 도출",
+  "perform_create": "수행형 생성"
 }
