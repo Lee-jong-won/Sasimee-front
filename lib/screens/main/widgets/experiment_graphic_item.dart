@@ -16,8 +16,16 @@ class ExperimentGraphicItem extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-          color: ExperimentType.getTagBackgroundColor[type],
-          borderRadius: BorderRadius.circular(20)
+        color: ExperimentType.getTagBackgroundColor[type],
+        borderRadius: BorderRadius.circular(20),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.2),
+            spreadRadius: 1,
+            blurRadius: 4,
+            offset: const Offset(0, 3), // changes position of shadow
+          ),
+        ],
       ),
       padding: const EdgeInsets.symmetric(
         vertical: 15, horizontal: 18
@@ -51,7 +59,15 @@ class ExperimentGraphicItem extends StatelessWidget {
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Colors.white
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.2),
+                  spreadRadius: 1,
+                  blurRadius: 4,
+                  offset: Offset(0, 3), // changes position of shadow
+                ),
+              ],
             ),
             child: Row(
               children: [
