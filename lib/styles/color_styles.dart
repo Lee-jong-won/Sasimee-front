@@ -3,8 +3,10 @@ import 'dart:ui';
 class ColorStyles {
   static const Color primaryBlue = Color(0xFF0075FF);
   static const Color secondaryBlue = Color(0xFFD4E2FF);
+  static const Color translucenceBlue = Color(0x80D4E2FF); // 투명도 50%
   static const Color primaryOrange = Color(0xFFFF9B30);
   static const Color secondaryOrange = Color(0xFFFFEAD4);
+  static const Color translucenceOrange = Color(0x80FFEAD4); // 투명도 50%
 
   static const Color layoutBackground = Color(0xFFF9F9F9);
   static const Color tagBackground = Color(0xFFE9E9E9);

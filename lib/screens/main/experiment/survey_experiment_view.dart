@@ -38,7 +38,7 @@ class SurveyExperimentView extends StatelessWidget {
 
   Widget _recommendLayout() {
     return Container(
-      color: ColorStyles.secondaryOrange,
+      color: ColorStyles.translucenceOrange,
       padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,9 +46,10 @@ class SurveyExperimentView extends StatelessWidget {
           Text("survey_screen_recommend_title".tr(),
             textAlign: TextAlign.start,
             style: const TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.w600,
-              color: Colors.black,
+                fontSize: 22,
+                fontWeight: FontWeight.w600,
+                color: Colors.black,
+                height: 1.2
             ),
           ),
           const SizedBox(height: 5,),
@@ -77,6 +78,7 @@ class SurveyExperimentView extends StatelessWidget {
     );
   }
 
+  //TODO: 버튼 클릭 시 더보기 & 접기 기능 추가
   Widget _showMoreRecommendButton() {
     return Container(
       width: double.infinity,

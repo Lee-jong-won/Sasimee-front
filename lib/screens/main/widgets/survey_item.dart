@@ -35,7 +35,10 @@ class SurveyItem extends StatelessWidget {
                 ]
               : null
       ),
-      padding: const EdgeInsets.all(15),
+      padding: EdgeInsets.symmetric(
+          vertical: 15,
+          horizontal: isDefaultView ? 15 : 24
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

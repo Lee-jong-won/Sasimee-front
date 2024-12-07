@@ -48,7 +48,7 @@ class _PerformExperimentViewState extends State<PerformExperimentView> {
   Widget _recommendLayout() {
     return Container(
       width: double.infinity,
-      color: ColorStyles.secondaryBlue,
+      color: ColorStyles.translucenceBlue,
       padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 12),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,6 +64,7 @@ class _PerformExperimentViewState extends State<PerformExperimentView> {
                     fontSize: 22,
                     fontWeight: FontWeight.w600,
                     color: Colors.black,
+                    height: 1.2
                   ),
                 ),
                 const SizedBox(height: 5,),
@@ -94,7 +95,7 @@ class _PerformExperimentViewState extends State<PerformExperimentView> {
                   pageSnapping: true, // 페이지 스냅 효과 활성화
                   itemBuilder: (context, pageIndex) {
                     return Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 12),
                       child: Row(
                         children: [
                           Flexible(
