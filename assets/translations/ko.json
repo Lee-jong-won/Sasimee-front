@@ -7,8 +7,14 @@
   "survey_recommend_title": "추천하는 설문형 사회·심리 실험",
   "survey_description": "손쉬운 참여와\n스마트한 설문지 생성",
   "survey_create": "설문형 생성",
+  "survey_screen_recommend_title": "많은 사람들이 찾은\n설문형 실험",
 
   "perform_recommend_title": "추천하는 수행형 사회·심리 실험",
   "perform_description": "신뢰를 바탕으로\n의미 있는 결과 도출",
-  "perform_create": "수행형 생성"
+  "perform_create": "수행형 생성",
+
+  "recommend_description": "사용자들에게 인기 있는 실험이에요.",
+  "recommend_more": "인기 실험 더보기",
+  "recommend_close": "접기",
+  "item_count": "{itemCount}건"
 }

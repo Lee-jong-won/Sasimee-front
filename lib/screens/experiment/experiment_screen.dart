@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sasimee/screens/experiment/survey_experiment_view.dart';
 import 'package:sasimee/styles/color_styles.dart';
 
 import '../../styles/svg_icons.dart';
@@ -23,7 +24,7 @@ class ExperimentScreen extends StatelessWidget {
         appBar: _appBar(),
         body: TabBarView(
           children: [
-            Container(color: Colors.grey,),
+            const SurveyExperimentView(),
             Container(color: Colors.black12,),
           ],
         ),
