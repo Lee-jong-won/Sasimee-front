@@ -40,7 +40,7 @@ class LoginScreen extends StatelessWidget {
                 ),
                 Flexible(
                   flex: 2,
-                    child: _bottomLoginAndSignupLayout(context)
+                    child: _bottomLoginAndSignupLayout(loginViewModel, context)
                 )
               ],
             ),
@@ -111,24 +111,30 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget _bottomLoginAndSignupLayout(BuildContext context) {
+  Widget _bottomLoginAndSignupLayout(LoginViewModel viewModel, BuildContext context) {
     return Column(
       children: [
-        _loginButton(context),
+        _loginButton(viewModel, context),
         const SizedBox(height: 30,),
         _signupButton(context)
       ],
     );
   }
 
-  Widget _loginButton(BuildContext context) {
+  Widget _loginButton(LoginViewModel viewModel, BuildContext context) {
     return SizedBox(
       width: double.infinity,
       child: ElevatedButton(
           onPressed: (){
-            // TODO: 로그인 화면으로 이동
-            Navigator.pushNamedAndRemoveUntil(context, MainScreen.routeName, (route) => false); // 홈으로 이동 (임시)
+            viewModel.isLoginButtonEnabled
+                ? Navigator.pushNamedAndRemoveUntil(context, MainScreen.routeName, (route) => false)
+                : null;
           },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: viewModel.isLoginButtonEnabled
+                ? ColorStyles.primaryBlue
+                : ColorStyles.dividerBackground,
+          ),
           child: Text('login'.tr())
       ),
     );
