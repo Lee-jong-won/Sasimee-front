@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sasimee/screens/login/login_viewmodel.dart';
 import 'package:sasimee/screens/main/main_screen.dart';
+import 'package:sasimee/screens/signup/signup_screen.dart';
 import 'package:sasimee/styles/icons.dart';
 
 import '../../styles/color_styles.dart';
@@ -107,7 +108,7 @@ class LoginScreen extends StatelessWidget {
       children: [
         _loginButton(context),
         const SizedBox(height: 30,),
-        _signupButton()
+        _signupButton(context)
       ],
     );
   }
@@ -125,7 +126,7 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget _signupButton() {
+  Widget _signupButton(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -138,8 +139,8 @@ class LoginScreen extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            //TODO: 회원가입 페이지로 이동
-            print("회원가입 버튼 클릭");
+            // 회원가입 화면으로 이동
+            Navigator.of(context).pushNamed(SignupScreen.routeName);
           },
           child: Text('signup'.tr(),
             style: const TextStyle(

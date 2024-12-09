@@ -5,6 +5,7 @@ import 'package:sasimee/screens/login/login_screen.dart';
 import 'package:sasimee/screens/login/login_viewmodel.dart';
 import 'package:sasimee/screens/main/experiment/experiment_screen.dart';
 import 'package:sasimee/screens/main/main_screen.dart';
+import 'package:sasimee/screens/signup/signup_screen.dart';
 import 'package:sasimee/styles/color_styles.dart';
 import 'package:sasimee/widgets/tag_item.dart';
 
@@ -27,6 +28,7 @@ void main() async {
 /// 라우팅 설정 (pushNamed를 통해 쉽게 화면 라우팅을 할 수 있다)
 final route = {
   LoginScreen.routeName: (context) => const LoginScreen(),
+  SignupScreen.routeName: (context) => const SignupScreen(),
   MainScreen.routeName: (context) => const MainScreen(),
   ExperimentScreen.routeName: (context) {
     final args = ModalRoute.of(context)!.settings.arguments as ExperimentType;

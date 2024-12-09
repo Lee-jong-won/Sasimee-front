@@ -8,6 +8,9 @@
   "login": "로그인",
   "not_yet_member": "아직 회원이 아니신가요?",
   "signup": "회원가입",
+  "signup_age_title": "연령대를\n선택해 주세요.",
+  "signup_tag_guide": "선택하신 키워드는 언제든 바꿀 수 있습니다.",
+  "next": "다음",
 
   "full_view": "전체 보기",
   "create_experiment": "사회·심리 실험 올리기",
