@@ -6,8 +6,8 @@ import 'package:sasimee/styles/icons.dart';
 import '../styles/color_styles.dart';
 
 class TextFieldType {
-  static final EMAIL = TextFieldType("email_hint".tr(), SvgIcons.email);
-  static final PASSWORD = TextFieldType("password_hint".tr(), SvgIcons.lock);
+  static final email = TextFieldType("email_hint".tr(), SvgIcons.email);
+  static final password = TextFieldType("password_hint".tr(), SvgIcons.lock);
   //TODO: 이름, 전화번호 등 회원 정보 입력 유형 추가 필요
 
   final String hintText;
@@ -48,7 +48,7 @@ class _CommonTextFieldState extends State<CommonTextField> {
         child: TextField(
           controller: widget.textEditingController,
           cursorColor: Colors.black54,
-          obscureText: widget.type == TextFieldType.PASSWORD ? _obscureText : false,
+          obscureText: widget.type == TextFieldType.password ? _obscureText : false,
           decoration: InputDecoration(
             filled: true,
             fillColor: widget.focusNode.hasFocus
@@ -62,7 +62,7 @@ class _CommonTextFieldState extends State<CommonTextField> {
               padding: const EdgeInsets.all(12.0),
               child: widget.type.prefixIcon,
             ),
-            suffixIcon: widget.type == TextFieldType.PASSWORD
+            suffixIcon: widget.type == TextFieldType.password
                 ? IconButton(
               icon: Icon(
                 _obscureText ? Icons.visibility_off : Icons.visibility,

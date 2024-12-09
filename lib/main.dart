@@ -7,7 +7,8 @@ import 'package:sasimee/screens/main/experiment/experiment_screen.dart';
 import 'package:sasimee/screens/main/main_screen.dart';
 import 'package:sasimee/screens/signup/signup_screen.dart';
 import 'package:sasimee/styles/color_styles.dart';
-import 'package:sasimee/widgets/tag_item.dart';
+
+import 'enums/experiment_type.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

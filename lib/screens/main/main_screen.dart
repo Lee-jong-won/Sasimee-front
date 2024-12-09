@@ -6,6 +6,7 @@ import 'package:sasimee/screens/main/widgets/survey_item.dart';
 import 'package:sasimee/widgets/tag_item.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../enums/experiment_type.dart';
 import '../../styles/color_styles.dart';
 import '../../styles/icons.dart';
 import 'experiment/experiment_screen.dart';
@@ -196,7 +197,7 @@ class _MainScreenState extends State<MainScreen> {
                 color: Colors.black,
               ),
             ),
-            _detailButton(ExperimentType.SURVEY)
+            _detailButton(ExperimentType.survey)
           ],
         ),
         const SizedBox(height: 10,),
@@ -228,7 +229,7 @@ class _MainScreenState extends State<MainScreen> {
                 color: Colors.black,
               ),
             ),
-            _detailButton(ExperimentType.PERFORM) // 전체 보기
+            _detailButton(ExperimentType.perform) // 전체 보기
           ],
         ),
         const SizedBox(height: 10,),
@@ -292,12 +293,12 @@ class _MainScreenState extends State<MainScreen> {
           children: [
             Flexible(
                 flex: 1,
-                child: ExperimentGraphicItem(type: ExperimentType.SURVEY)
+                child: ExperimentGraphicItem(type: ExperimentType.survey)
             ),
             SizedBox(width: 20,),
             Flexible(
                 flex: 1,
-                child: ExperimentGraphicItem(type: ExperimentType.PERFORM)
+                child: ExperimentGraphicItem(type: ExperimentType.perform)
             ),
           ],
         ),

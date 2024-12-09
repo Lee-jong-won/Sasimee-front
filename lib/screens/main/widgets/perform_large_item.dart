@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sasimee/widgets/tag_item.dart';
 
+import '../../../enums/experiment_type.dart';
 import '../../../styles/color_styles.dart';
 
 class PerformLargeItem extends StatelessWidget {
@@ -54,7 +55,7 @@ class PerformLargeItem extends StatelessWidget {
           ),
           const SizedBox(height: 10,),
           const TagList(
-              type: ExperimentType.PERFORM,
+              type: ExperimentType.perform,
               tags: ['수행형', '20대', '성별무관', '사회적 행동', '심리']
           )
         ],

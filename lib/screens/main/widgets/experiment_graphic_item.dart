@@ -1,7 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sasimee/styles/icons.dart';
-import 'package:sasimee/widgets/tag_item.dart';
+
+import '../../../enums/experiment_type.dart';
 
 class ExperimentGraphicItem extends StatelessWidget {
   final ExperimentType type; //TODO: Perform 데이터로 변경
@@ -16,7 +17,7 @@ class ExperimentGraphicItem extends StatelessWidget {
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: ExperimentType.getTagBackgroundColor[type],
+        color: type.tagBackgroundColor,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -48,7 +49,7 @@ class ExperimentGraphicItem extends StatelessWidget {
       child: SizedBox(
           width: 80,
           height: 80,
-          child: type == ExperimentType.SURVEY
+          child: type == ExperimentType.survey
               ? PngImages.surveyGraphic
               : PngImages.performGraphic
       ),
@@ -56,7 +57,7 @@ class ExperimentGraphicItem extends StatelessWidget {
   }
 
   Widget _description() {
-    return Text(type == ExperimentType.SURVEY
+    return Text(type == ExperimentType.survey
         ? 'survey_description'.tr()
         : 'perform_description'.tr(),
       style: const TextStyle(
@@ -92,7 +93,7 @@ class ExperimentGraphicItem extends StatelessWidget {
         child: Row(
           children: [
             Expanded(
-              child: Text(type == ExperimentType.SURVEY
+              child: Text(type == ExperimentType.survey
                   ? "survey_create".tr()
                   : "perform_create".tr(),
                 textAlign: TextAlign.center,

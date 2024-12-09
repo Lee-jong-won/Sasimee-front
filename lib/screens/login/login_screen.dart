@@ -71,6 +71,7 @@ class LoginScreen extends StatelessWidget {
               fontWeight: FontWeight.w400,
               color: Colors.black
           ),
+          textAlign: TextAlign.center,
         ),
       ],
     );
@@ -83,13 +84,13 @@ class LoginScreen extends StatelessWidget {
       children: [
         CommonTextField(
             textEditingController: viewModel.emailController,
-            type: TextFieldType.EMAIL,
+            type: TextFieldType.email,
             focusNode: viewModel.emailFocusNode,
         ),
         const SizedBox(height: 20,),
         CommonTextField(
           textEditingController: viewModel.passwordController,
-          type: TextFieldType.PASSWORD,
+          type: TextFieldType.password,
           focusNode: viewModel.passwordFocusNode,
         ),
         const SizedBox(height: 6,),

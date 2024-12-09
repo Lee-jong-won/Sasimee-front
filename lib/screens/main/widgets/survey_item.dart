@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:sasimee/widgets/tag_item.dart';
 
+import '../../../enums/experiment_item_view_option.dart';
+import '../../../enums/experiment_type.dart';
 import '../../../styles/color_styles.dart';
-
-enum ItemViewType { DEFAULT, FULL }
 
 class SurveyItem extends StatelessWidget {
   final String title; //TODO: Survey 데이터로 변경
-  final ItemViewType viewType;
+  final ExperimentItemViewOption viewType;
 
   const SurveyItem({
     super.key,
-    this.viewType = ItemViewType.DEFAULT,
+    this.viewType = ExperimentItemViewOption.DEFAULT,
     required this.title
   });
 
   @override
   Widget build(BuildContext context) {
-    bool isDefaultView = viewType == ItemViewType.DEFAULT;
+    bool isDefaultView = viewType == ExperimentItemViewOption.DEFAULT;
 
     return Container(
       width: double.infinity,
@@ -60,7 +60,7 @@ class SurveyItem extends StatelessWidget {
             height: 10,
           ),
           const TagList(
-              type: ExperimentType.SURVEY,
+              type: ExperimentType.survey,
               tags: ['설문형', '여성', '인공지능']
           )
         ],

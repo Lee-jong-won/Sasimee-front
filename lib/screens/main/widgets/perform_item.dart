@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sasimee/widgets/tag_item.dart';
 
+import '../../../enums/experiment_type.dart';
 import '../../../styles/color_styles.dart';
 
 class PerformItem extends StatelessWidget {
@@ -65,7 +66,7 @@ class PerformItem extends StatelessWidget {
           ),
           const SizedBox(height: 10,),
           const TagList(
-              type: ExperimentType.PERFORM,
+              type: ExperimentType.perform,
               tags: ['수행형', '친구랑']
           )
         ],
