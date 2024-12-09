@@ -8,11 +8,12 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../styles/color_styles.dart';
 import '../../styles/svg_icons.dart';
+import 'experiment/experiment_screen.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
-
   static String routeName = "/";
+
+  const MainScreen({super.key});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -254,8 +255,8 @@ class _MainScreenState extends State<MainScreen> {
   Widget _detailButton(ExperimentType type) {
     return GestureDetector(
       onTap: (){
-        //TODO: 전체 보기 화면으로 이동
-        print("전체 보기, $type");
+        Navigator.of(context)
+            .pushNamed(ExperimentScreen.routeName, arguments: type,);
       },
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
