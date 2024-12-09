@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sasimee/screens/main/experiment/experiment_screen.dart';
 import 'package:sasimee/screens/main/main_screen.dart';
+import 'package:sasimee/styles/color_styles.dart';
 import 'package:sasimee/widgets/tag_item.dart';
 
 void main() async {
@@ -33,9 +34,10 @@ class SasimeeApp extends StatelessWidget {
     return MaterialApp(
       title: 'app_name'.tr(),
       theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
-          useMaterial3: true,
-          fontFamily: "Pretendard"
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
+        useMaterial3: true,
+        fontFamily: "Pretendard",
+        primaryColor: ColorStyles.primaryBlue,
       ),
       initialRoute: MainScreen.routeName,
       routes: route,

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SvgIcons {
@@ -14,4 +15,13 @@ class SvgIcons {
   static SvgPicture lock = SvgPicture.asset("assets/images/icons/ic_lock.svg");
   static SvgPicture person = SvgPicture.asset("assets/images/icons/ic_person.svg");
   static SvgPicture call = SvgPicture.asset("assets/images/icons/ic_call.svg");
+}
+
+class PngImages {
+  static Image logo = Image.asset('assets/images/sasimee_logo.png');
+
+  static Image bannerUserGuide = Image.asset('assets/images/banners/banner_user_guide.png');
+
+  static Image surveyGraphic = Image.asset('assets/images/graphics/img_survey.png');
+  static Image performGraphic = Image.asset('assets/images/graphics/img_perform.png');
 }

@@ -3,7 +3,7 @@ import 'package:sasimee/screens/main/experiment/perform_experiment_view.dart';
 import 'package:sasimee/screens/main/experiment/survey_experiment_view.dart';
 import 'package:sasimee/styles/color_styles.dart';
 
-import '../../../styles/svg_icons.dart';
+import '../../../styles/icons.dart';
 import '../../../widgets/tag_item.dart';
 
 class ExperimentScreen extends StatelessWidget {

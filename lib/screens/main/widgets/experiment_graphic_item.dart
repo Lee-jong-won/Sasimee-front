@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:sasimee/styles/svg_icons.dart';
+import 'package:sasimee/styles/icons.dart';
 import 'package:sasimee/widgets/tag_item.dart';
 
 class ExperimentGraphicItem extends StatelessWidget {
@@ -49,8 +49,8 @@ class ExperimentGraphicItem extends StatelessWidget {
           width: 80,
           height: 80,
           child: type == ExperimentType.SURVEY
-              ? Image.asset('assets/images/graphics/img_survey.png')
-              : Image.asset('assets/images/graphics/img_perform.png')
+              ? PngImages.surveyGraphic
+              : PngImages.performGraphic
       ),
     );
   }

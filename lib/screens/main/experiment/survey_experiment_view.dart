@@ -1,6 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:sasimee/styles/svg_icons.dart';
+import 'package:sasimee/styles/icons.dart';
 
 import '../../../styles/color_styles.dart';
 import '../widgets/survey_item.dart';
