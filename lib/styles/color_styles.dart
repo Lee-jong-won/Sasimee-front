@@ -18,7 +18,7 @@ class ColorStyles {
   static const Color hintText = Color(0xFF777C89);
   static const Color guideText = Color(0xFF9EA3BE);
   static const Color subText = Color(0xFF47515D);
-  static const Color gray80 = Color(0xFF3D3D3D);
 
+  static const Color gray80 = Color(0xFF3D3D3D);
   static const Color gray70 = Color(0xFF6B6B6B);
 }

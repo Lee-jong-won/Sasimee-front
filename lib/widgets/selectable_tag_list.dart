@@ -6,12 +6,14 @@ class SelectableTagList extends StatefulWidget {
   final List<String> items;
   final bool isMultiSelect;
   final Function(List<String>) onSelectionChanged;
+  final List<String> initialSelection; // 초기 선택값
 
   const SelectableTagList({
     super.key,
     required this.items,
     required this.isMultiSelect,
     required this.onSelectionChanged,
+    this.initialSelection = const [], // 기본값은 빈 리스트
   });
 
   @override
@@ -19,7 +21,13 @@ class SelectableTagList extends StatefulWidget {
 }
 
 class _SelectableTagListState extends State<SelectableTagList> {
-  final Set<String> _selectedItems = {};
+  late Set<String> _selectedItems = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _selectedItems = Set.from(widget.initialSelection);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,18 +41,19 @@ class _SelectableTagListState extends State<SelectableTagList> {
           selected: isSelected,
           onSelected: (selected) {
             setState(() {
-              if (widget.isMultiSelect) {
+              if (widget.isMultiSelect) { // 복수 선택
                 if (selected) {
                   _selectedItems.add(item);
                 } else {
                   _selectedItems.remove(item);
                 }
-              } else {
+              } else { // 단일 선택
                 _selectedItems.clear();
                 if (selected) {
                   _selectedItems.add(item);
                 }
               }
+              print('selectItem: $item');
               widget.onSelectionChanged(_selectedItems.toList());
             });
           },
