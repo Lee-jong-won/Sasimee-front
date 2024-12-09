@@ -16,7 +16,7 @@ class TextFieldType {
   TextFieldType(this.hintText, this.prefixIcon);
 }
 
-class CommonTextField extends StatelessWidget {
+class CommonTextField extends StatefulWidget {
   final TextEditingController textEditingController;
   final TextFieldType type;
   final FocusNode focusNode;
@@ -29,22 +29,29 @@ class CommonTextField extends StatelessWidget {
   });
 
   @override
+  State<CommonTextField> createState() => _CommonTextFieldState();
+}
+
+class _CommonTextFieldState extends State<CommonTextField> {
+  bool _obscureText = true;
+
+  @override
   Widget build(BuildContext context) {
     return Center(
       child: Focus(
-        focusNode: focusNode,
+        focusNode: widget.focusNode,
         onFocusChange: (hasFocus) {
           if (!hasFocus) {
-            focusNode.unfocus();
+            widget.focusNode.unfocus();
           }
         },
         child: TextField(
-          controller: textEditingController,
+          controller: widget.textEditingController,
           cursorColor: Colors.black54,
-          obscureText: type == TextFieldType.PASSWORD, // TODO: type 비밀번호일 경우 비밀번호 보기 기능 구현
+          obscureText: widget.type == TextFieldType.PASSWORD ? _obscureText : false,
           decoration: InputDecoration(
             filled: true,
-            fillColor: focusNode.hasFocus
+            fillColor: widget.focusNode.hasFocus
                 ? ColorStyles.translucenceBlue
                 : ColorStyles.textFieldBackground,
             contentPadding: const EdgeInsets.symmetric(
@@ -53,9 +60,22 @@ class CommonTextField extends StatelessWidget {
             ),
             prefixIcon: Padding(
               padding: const EdgeInsets.all(12.0),
-              child: type.prefixIcon,
+              child: widget.type.prefixIcon,
             ),
-            hintText: type.hintText,
+            suffixIcon: widget.type == TextFieldType.PASSWORD
+                ? IconButton(
+              icon: Icon(
+                _obscureText ? Icons.visibility_off : Icons.visibility,
+                color: Colors.grey,
+              ),
+              onPressed: () {
+                setState(() {
+                  _obscureText = !_obscureText;
+                });
+              },
+            )
+                : null,
+            hintText: widget.type.hintText,
             hintStyle: const TextStyle(
                 color: ColorStyles.hintText,
                 fontSize: 14,
