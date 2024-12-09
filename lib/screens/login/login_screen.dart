@@ -81,9 +81,17 @@ class LoginScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
-        CommonTextField(textEditingController: viewModel.emailController, type: TextFieldType.EMAIL),
+        CommonTextField(
+            textEditingController: viewModel.emailController,
+            type: TextFieldType.EMAIL,
+            focusNode: viewModel.emailFocusNode,
+        ),
         const SizedBox(height: 20,),
-        CommonTextField(textEditingController: viewModel.passwordController, type: TextFieldType.PASSWORD),
+        CommonTextField(
+          textEditingController: viewModel.passwordController,
+          type: TextFieldType.PASSWORD,
+          focusNode: viewModel.passwordFocusNode,
+        ),
         const SizedBox(height: 6,),
         TextButton(
           onPressed: () {

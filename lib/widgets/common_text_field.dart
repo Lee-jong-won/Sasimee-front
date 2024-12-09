@@ -19,40 +19,57 @@ class TextFieldType {
 class CommonTextField extends StatelessWidget {
   final TextEditingController textEditingController;
   final TextFieldType type;
+  final FocusNode focusNode;
 
-  const CommonTextField({super.key,
+  const CommonTextField({
+    super.key,
     required this.textEditingController,
-    required this.type
+    required this.type,
+    required this.focusNode,
   });
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: TextField(
-        cursorColor: Colors.black54,
-        obscureText: type == TextFieldType.PASSWORD, // TODO: type 비밀번호일 경우 비밀번호 보기 기능 구현
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: ColorStyles.textFieldBackground,
-          contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
-          prefixIcon: Padding(
-            padding: const EdgeInsets.all(12.0),
-            child: type.prefixIcon,
-          ),
-          hintText: type.hintText,
-          hintStyle: const TextStyle(
-              color: ColorStyles.hintText,
-              fontSize: 14,
-              fontWeight: FontWeight.w400
-          ),
-          focusColor: ColorStyles.translucenceBlue,
-          focusedBorder: const OutlineInputBorder(
-            borderRadius: BorderRadius.all(Radius.circular(16.0)),
-            borderSide: BorderSide(width: 1, color: ColorStyles.primaryBlue),
-          ),
-          border: const OutlineInputBorder(
-            borderSide: BorderSide.none,
-            borderRadius: BorderRadius.all(Radius.circular(16.0)),
+      child: Focus(
+        focusNode: focusNode,
+        onFocusChange: (hasFocus) {
+          if (!hasFocus) {
+            focusNode.unfocus();
+          }
+        },
+        child: TextField(
+          controller: textEditingController,
+          cursorColor: Colors.black54,
+          obscureText: type == TextFieldType.PASSWORD, // TODO: type 비밀번호일 경우 비밀번호 보기 기능 구현
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: focusNode.hasFocus
+                ? ColorStyles.translucenceBlue
+                : ColorStyles.textFieldBackground,
+            contentPadding: const EdgeInsets.symmetric(
+                horizontal: 18,
+                vertical: 18
+            ),
+            prefixIcon: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: type.prefixIcon,
+            ),
+            hintText: type.hintText,
+            hintStyle: const TextStyle(
+                color: ColorStyles.hintText,
+                fontSize: 14,
+                fontWeight: FontWeight.w400
+            ),
+            focusColor: ColorStyles.translucenceBlue,
+            focusedBorder: const OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(16.0)),
+              borderSide: BorderSide(width: 1, color: ColorStyles.primaryBlue),
+            ),
+            border: const OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.all(Radius.circular(16.0)),
+            ),
           ),
         ),
       ),
