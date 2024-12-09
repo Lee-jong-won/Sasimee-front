@@ -3,8 +3,8 @@ import 'package:sasimee/screens/main/experiment/perform_experiment_view.dart';
 import 'package:sasimee/screens/main/experiment/survey_experiment_view.dart';
 import 'package:sasimee/styles/color_styles.dart';
 
-import '../../../styles/svg_icons.dart';
-import '../../../widgets/tag_item.dart';
+import '../../../enums/experiment_type.dart';
+import '../../../styles/icons.dart';
 
 class ExperimentScreen extends StatelessWidget {
   static String routeName = "/experiment";
@@ -20,7 +20,7 @@ class ExperimentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 2,
-      initialIndex: type == ExperimentType.SURVEY ? 0 : 1,
+      initialIndex: type == ExperimentType.survey ? 0 : 1,
       child: Scaffold(
         appBar: _appBar(),
         body: const TabBarView(

@@ -6,8 +6,9 @@ import 'package:sasimee/screens/main/widgets/survey_item.dart';
 import 'package:sasimee/widgets/tag_item.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../enums/experiment_type.dart';
 import '../../styles/color_styles.dart';
-import '../../styles/svg_icons.dart';
+import '../../styles/icons.dart';
 import 'experiment/experiment_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -23,10 +24,10 @@ class _MainScreenState extends State<MainScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
-  final List<String> _bannerImages = [
-    'assets/images/banners/banner_user_guide.png',
-    'assets/images/banners/banner_user_guide.png',
-    'assets/images/banners/banner_user_guide.png',
+  final List<Image> _bannerImages = [
+    PngImages.bannerUserGuide,
+    PngImages.bannerUserGuide,
+    PngImages.bannerUserGuide
   ];
 
   @override
@@ -83,7 +84,7 @@ class _MainScreenState extends State<MainScreen> {
           SizedBox(
             width: 28,
             height: 25,
-            child: Image.asset('assets/images/sasimee_logo.png'),
+            child: PngImages.logo
           ),
           const SizedBox(width: 13),
           SizedBox(
@@ -127,10 +128,7 @@ class _MainScreenState extends State<MainScreen> {
                 });
               },
               itemBuilder: (context, index) {
-                return Image.asset(
-                  _bannerImages[index],
-                  // fit: BoxFit.cover,
-                );
+                return _bannerImages[index];
               },
             ),
           ),
@@ -199,7 +197,7 @@ class _MainScreenState extends State<MainScreen> {
                 color: Colors.black,
               ),
             ),
-            _detailButton(ExperimentType.SURVEY)
+            _detailButton(ExperimentType.survey)
           ],
         ),
         const SizedBox(height: 10,),
@@ -231,7 +229,7 @@ class _MainScreenState extends State<MainScreen> {
                 color: Colors.black,
               ),
             ),
-            _detailButton(ExperimentType.PERFORM) // 전체 보기
+            _detailButton(ExperimentType.perform) // 전체 보기
           ],
         ),
         const SizedBox(height: 10,),
@@ -295,12 +293,12 @@ class _MainScreenState extends State<MainScreen> {
           children: [
             Flexible(
                 flex: 1,
-                child: ExperimentGraphicItem(type: ExperimentType.SURVEY)
+                child: ExperimentGraphicItem(type: ExperimentType.survey)
             ),
             SizedBox(width: 20,),
             Flexible(
                 flex: 1,
-                child: ExperimentGraphicItem(type: ExperimentType.PERFORM)
+                child: ExperimentGraphicItem(type: ExperimentType.perform)
             ),
           ],
         ),

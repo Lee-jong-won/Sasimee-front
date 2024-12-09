@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../enums/experiment_type.dart';
 import '../styles/color_styles.dart';
 
 // 단일 태그 아이템을 위한 위젯
@@ -19,7 +20,7 @@ class TagItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         decoration: BoxDecoration(
-            color: isPrimary ? ExperimentType.getTagBackgroundColor[type] : ColorStyles.tagBackground,
+            color: isPrimary ? type.tagBackgroundColor : ColorStyles.tagBackground,
             borderRadius: BorderRadius.circular(15)
         ),
         padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 6),
@@ -27,7 +28,7 @@ class TagItem extends StatelessWidget {
           '#$text',
           style: TextStyle(
               fontSize: 9,
-              color: isPrimary ? ExperimentType.getTagForegroundColor[type] : ColorStyles.tagForeground
+              color: isPrimary ? type.tagForegroundColor : ColorStyles.tagForeground
           ),
         )
     );
@@ -60,20 +61,4 @@ class TagList extends StatelessWidget {
       ),
     );
   }
-}
-
-enum ExperimentType {
-  SURVEY, // 설문형
-  PERFORM; // 수행형
-
-  // 매치 데이터 생성
-  static Map<ExperimentType, Color> getTagForegroundColor = {
-    ExperimentType.SURVEY: ColorStyles.primaryOrange,
-    ExperimentType.PERFORM: ColorStyles.primaryBlue,
-  };
-
-  static Map<ExperimentType, Color> getTagBackgroundColor = {
-    ExperimentType.SURVEY: ColorStyles.secondaryOrange,
-    ExperimentType.PERFORM: ColorStyles.secondaryBlue,
-  };
 }
