@@ -71,6 +71,13 @@ class SignupViewModel with ChangeNotifier {
     final name = _nameController.text.trim();
     final mobileNumber = _mobileNumberController.text.trim();
 
+    _isSignupButtonEnabled = isValidEmail(email) &&
+        isValidPassword(password1) &&
+        isValidPassword(password2) &&
+        name.isNotEmpty &&
+        mobileNumber.replaceAll('-', '').length == 11 &&
+        mobileNumber.startsWith('010');
+
     notifyListeners();
   }
 
