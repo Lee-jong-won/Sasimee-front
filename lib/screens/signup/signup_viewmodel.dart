@@ -100,6 +100,12 @@ class SignupViewModel with ChangeNotifier {
     final name = _nameController.text.trim();
     final mobileNumber = _mobileNumberController.text.trim();
 
+    if (password1 != password2) {
+      _passwordErrorMessage = 'not_equal_password'.tr();
+      notifyListeners();
+      return false;
+    }
+
     return true;
   }
 }
