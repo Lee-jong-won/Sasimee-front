@@ -13,6 +13,7 @@ class SurveyExperimentView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorStyles.layoutBackground,
+      floatingActionButton: _createSurveyFloatingButton(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -164,6 +165,27 @@ class SurveyExperimentView extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+
+  // 설문 작성 플로팅 버튼
+  Widget _createSurveyFloatingButton() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
+      child: FloatingActionButton.extended(
+        onPressed: () {
+          //TODO: 실험 작성 화면으로 이동
+        },
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
+        label: Text("survey_add".tr(),
+            style: const TextStyle(
+                color: Colors.white,
+                fontSize: 16,
+                fontWeight: FontWeight.w600
+            )),
+        backgroundColor: ColorStyles.primaryOrange,
+        icon: const Icon(Icons.add, color: Colors.white, size: 20),
       ),
     );
   }
