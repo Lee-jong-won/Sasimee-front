@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sasimee/screens/signup/signup_auth_viewmodel.dart';
+import 'package:sasimee/screens/signup/signup_tag_screen.dart';
 import 'package:sasimee/styles/color_styles.dart';
 import 'package:sasimee/widgets/common_text_field.dart';
 import 'package:sprintf/sprintf.dart';
@@ -140,6 +141,7 @@ class _SignupAuthScreenState extends State<SignupAuthScreen> {
       child: ElevatedButton(
           onPressed: () async {
             if (viewModel.isButtonEnabled) {
+              Navigator.of(context).pushNamed(SignupTagScreen.routeName);
             } else {
               viewModel.requestOtp();
             }
