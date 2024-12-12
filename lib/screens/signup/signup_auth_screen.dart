@@ -73,6 +73,7 @@ class _SignupAuthScreenState extends State<SignupAuthScreen> {
                           ],
                         ),
                       ),
+                      _bottomLoginAndSignupLayout(),
                     ],
                   ),
                 ),
@@ -81,6 +82,18 @@ class _SignupAuthScreenState extends State<SignupAuthScreen> {
         }),
       ),
     );
+  }
+
+  Widget _bottomLoginAndSignupLayout() {
+    return Consumer<SignupAuthViewModel>(builder: (context, viewModel, _) {
+      return Column(
+        children: [
+          _doneButton(viewModel, context),
+          const SizedBox(height: 30),
+          Visibility.maintain(child: _placeholder(context))
+        ],
+      );
+    });
   }
 
   Widget _doneButton(SignupAuthViewModel viewModel, BuildContext context) {
@@ -99,6 +112,27 @@ class _SignupAuthScreenState extends State<SignupAuthScreen> {
           child: Text(viewModel.isButtonEnabled
               ? 'enter_complete'.tr()
               : 'request_authentication_number'.tr())),
+    );
+  }
+
+  Widget _placeholder(BuildContext context) {
+    return const Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        TextButton(
+          onPressed: null,
+          child: Text(
+            '',
+            style: TextStyle(
+              color: ColorStyles.primaryBlue,
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+              decoration: TextDecoration.underline,
+              decorationColor: ColorStyles.primaryBlue,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
