@@ -37,7 +37,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     mediaQuery.padding.top -
                     mediaQuery.padding.bottom -
                     kToolbarHeight,
-                padding: const EdgeInsets.symmetric(horizontal: 32),
+                padding: const EdgeInsets.only(left: 32, right: 32, bottom: 57),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -56,21 +56,21 @@ class _SignupScreenState extends State<SignupScreen> {
                             const SizedBox(height: 20),
                             CommonTextField(
                               textEditingController:
-                                  viewModel.password1Controller,
+                              viewModel.password1Controller,
                               type: TextFieldType.password,
                               focusNode: viewModel.password1FocusNode,
                             ),
                             const SizedBox(height: 20),
                             Consumer<SignupViewModel>(
                                 builder: (context, viewModel, _) {
-                              return CommonTextField(
-                                textEditingController:
+                                  return CommonTextField(
+                                    textEditingController:
                                     viewModel.password2Controller,
-                                type: TextFieldType.passwordConfirmation,
-                                focusNode: viewModel.password2FocusNode,
-                                error: viewModel.passwordErrorMessage,
-                              );
-                            }),
+                                    type: TextFieldType.passwordConfirmation,
+                                    focusNode: viewModel.password2FocusNode,
+                                    error: viewModel.passwordErrorMessage,
+                                  );
+                                }),
                             const SizedBox(height: 26),
                             CommonTextField(
                               textEditingController: viewModel.nameController,
@@ -80,7 +80,7 @@ class _SignupScreenState extends State<SignupScreen> {
                             const SizedBox(height: 20),
                             CommonTextField(
                               textEditingController:
-                                  viewModel.mobileNumberController,
+                              viewModel.mobileNumberController,
                               type: TextFieldType.mobileNumber,
                               focusNode: viewModel.mobileNumberFocusNode,
                             ),
@@ -90,7 +90,6 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
                     _bottomLoginAndSignupLayout(),
-                    const SizedBox(height: 57),
                   ],
                 ),
               ),
@@ -122,6 +121,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
             final result = await viewModel.signUp();
             if (!context.mounted) return;
+
             if (result) {
               Navigator.of(context).pushNamed(
                 SignupAuthScreen.routeName,
