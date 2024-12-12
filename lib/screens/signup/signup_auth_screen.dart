@@ -82,4 +82,23 @@ class _SignupAuthScreenState extends State<SignupAuthScreen> {
       ),
     );
   }
+
+  Widget _doneButton(SignupAuthViewModel viewModel, BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton(
+          onPressed: () async {
+            if (viewModel.isButtonEnabled) {
+            } else {
+              viewModel.requestOtp();
+            }
+          },
+          style: ElevatedButton.styleFrom(
+            backgroundColor: ColorStyles.primaryBlue,
+          ),
+          child: Text(viewModel.isButtonEnabled
+              ? 'enter_complete'.tr()
+              : 'request_authentication_number'.tr())),
+    );
+  }
 }
