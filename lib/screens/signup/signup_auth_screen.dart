@@ -1,0 +1,85 @@
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:sasimee/screens/signup/signup_auth_viewmodel.dart';
+import 'package:sasimee/screens/signup/signup_viewmodel.dart';
+import 'package:sasimee/styles/color_styles.dart';
+import 'package:sasimee/widgets/common_text_field.dart';
+
+class SignupAuthScreen extends StatefulWidget {
+  static String routeName = "/signup_auth";
+
+  final String email;
+
+  const SignupAuthScreen({required this.email, super.key});
+
+  @override
+  State<SignupAuthScreen> createState() => _SignupAuthScreenState();
+}
+
+class _SignupAuthScreenState extends State<SignupAuthScreen> {
+  @override
+  Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
+
+    return ChangeNotifierProvider(
+      create: (_) => SignupAuthViewModel(),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(title: Text('register'.tr())),
+        body: Builder(builder: (context) {
+          final viewModel = Provider.of<SignupAuthViewModel>(context);
+
+          return SafeArea(
+              child: SingleChildScrollView(
+                child: Container(
+                  height: mediaQuery.size.height -
+                    mediaQuery.padding.top -
+                    mediaQuery.padding.bottom -
+                    kToolbarHeight,
+                  padding: const EdgeInsets.only(
+                    left: 32,
+                    top: 53,
+                    right: 32,
+                    bottom: 57,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'enter_authentication_number'.tr(),
+                              style: const TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                            const SizedBox(height: 12),
+                            Text(
+                              'sent_authentication_number'.tr(
+                                namedArgs: {'email': widget.email},
+                              ),
+                              style: const TextStyle(
+                                fontSize: 14,
+                              ),
+                            ),
+                            const SizedBox(height: 53),
+                            // Timer here
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              )
+          );
+        }),
+      ),
+    );
+  }
+}
