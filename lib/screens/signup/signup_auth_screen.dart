@@ -2,9 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sasimee/screens/signup/signup_auth_viewmodel.dart';
-import 'package:sasimee/screens/signup/signup_viewmodel.dart';
 import 'package:sasimee/styles/color_styles.dart';
 import 'package:sasimee/widgets/common_text_field.dart';
+import 'package:sprintf/sprintf.dart';
 
 class SignupAuthScreen extends StatefulWidget {
   static String routeName = "/signup_auth";
@@ -31,53 +31,91 @@ class _SignupAuthScreenState extends State<SignupAuthScreen> {
           final viewModel = Provider.of<SignupAuthViewModel>(context);
 
           return SafeArea(
-              child: SingleChildScrollView(
-                child: Container(
-                  height: mediaQuery.size.height -
+            child: SingleChildScrollView(
+              child: Container(
+                height: mediaQuery.size.height -
                     mediaQuery.padding.top -
                     mediaQuery.padding.bottom -
                     kToolbarHeight,
-                  padding: const EdgeInsets.only(
-                    left: 32,
-                    top: 53,
-                    right: 32,
-                    bottom: 57,
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Expanded(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              'enter_authentication_number'.tr(),
-                              style: const TextStyle(
-                                fontSize: 24,
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            const SizedBox(height: 12),
-                            Text(
-                              'sent_authentication_number'.tr(
-                                namedArgs: {'email': widget.email},
-                              ),
-                              style: const TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                            const SizedBox(height: 53),
-                            // Timer here
-                          ],
-                        ),
-                      ),
-                      _bottomLoginAndSignupLayout(),
-                    ],
-                  ),
+                padding: const EdgeInsets.only(
+                  left: 32,
+                  top: 53,
+                  right: 32,
+                  bottom: 57,
                 ),
-              )
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Expanded(
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'enter_authentication_number'.tr(),
+                            style: const TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                          const SizedBox(height: 12),
+                          Text(
+                            'sent_authentication_number'.tr(
+                              namedArgs: {'email': widget.email},
+                            ),
+                            style: const TextStyle(
+                              fontSize: 14,
+                            ),
+                          ),
+                          const SizedBox(height: 53),
+                          StreamBuilder<Duration>(
+                              stream: viewModel.timer,
+                              builder: (context, snapshot) {
+                                final duration = snapshot.data;
+                                final minutes =
+                                duration == null || duration.inMinutes < 0
+                                    ? 0
+                                    : duration.inMinutes;
+                                final seconds =
+                                duration == null || duration.inSeconds < 0
+                                    ? 0
+                                    : duration.inSeconds % 60;
+
+                                final time =
+                                sprintf('%02d:%02d', [minutes, seconds]);
+
+                                return CommonTextField(
+                                  textEditingController:
+                                  viewModel.authenticationNumberController,
+                                  type: TextFieldType.authenticationNumber,
+                                  focusNode:
+                                  viewModel.authenticationNumberFocusNode,
+                                  suffix: IntrinsicWidth(
+                                    child: Center(
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 18),
+                                        child: Text(
+                                          time,
+                                          style: const TextStyle(
+                                            fontSize: 14,
+                                            color: Color(0xfff25a5a),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                );
+                              }),
+                        ],
+                      ),
+                    ),
+                    _bottomLoginAndSignupLayout(),
+                  ],
+                ),
+              ),
+            ),
           );
         }),
       ),
