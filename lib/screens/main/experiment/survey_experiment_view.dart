@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:sasimee/screens/main/experiment/survey/survey_create_screen.dart';
 import 'package:sasimee/styles/icons.dart';
 
 import '../../../enums/experiment_item_view_option.dart';
@@ -13,7 +14,7 @@ class SurveyExperimentView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorStyles.layoutBackground,
-      floatingActionButton: _createSurveyFloatingButton(),
+      floatingActionButton: _createSurveyFloatingButton(context),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -170,12 +171,13 @@ class SurveyExperimentView extends StatelessWidget {
   }
 
   // 설문 작성 플로팅 버튼
-  Widget _createSurveyFloatingButton() {
+  Widget _createSurveyFloatingButton(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
       child: FloatingActionButton.extended(
         onPressed: () {
-          //TODO: 실험 작성 화면으로 이동
+          // 실험 작성 화면으로 이동
+          Navigator.of(context).pushNamed(SurveyCreateScreen.routeName);
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
         label: Text("survey_add".tr(),

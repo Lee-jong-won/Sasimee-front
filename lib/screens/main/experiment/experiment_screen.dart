@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:sasimee/screens/main/experiment/perform_experiment_view.dart';
+import 'package:sasimee/screens/main/experiment/survey/survey_viewmodel.dart';
 import 'package:sasimee/screens/main/experiment/survey_experiment_view.dart';
 import 'package:sasimee/styles/color_styles.dart';
 
@@ -18,16 +20,22 @@ class ExperimentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      initialIndex: type == ExperimentType.survey ? 0 : 1,
-      child: Scaffold(
-        appBar: _appBar(),
-        body: const TabBarView(
-          children: [
-            SurveyExperimentView(), // 설문형
-            PerformExperimentView(), // 수행형
-          ],
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<SurveyViewModel>(
+            create: (_) => SurveyViewModel()),
+      ],
+      child: DefaultTabController(
+        length: 2,
+        initialIndex: type == ExperimentType.survey ? 0 : 1,
+        child: Scaffold(
+          appBar: _appBar(),
+          body: const TabBarView(
+            children: [
+              SurveyExperimentView(), // 설문형
+              PerformExperimentView(), // 수행형
+            ],
+          ),
         ),
       ),
     );

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:sasimee/enums/tag_type.dart';
 
 import '../styles/color_styles.dart';
 
 class SelectableTagList extends StatefulWidget {
+  final TagType type;
   final List<String> items;
   final bool isMultiSelect;
   final Function(List<String>) onSelectionChanged;
@@ -10,6 +12,7 @@ class SelectableTagList extends StatefulWidget {
 
   const SelectableTagList({
     super.key,
+    this.type = TagType.experiment,
     required this.items,
     required this.isMultiSelect,
     required this.onSelectionChanged,
@@ -22,6 +25,9 @@ class SelectableTagList extends StatefulWidget {
 
 class _SelectableTagListState extends State<SelectableTagList> {
   late Set<String> _selectedItems = {};
+  final int _maxVisibleItems = 8;
+
+  final ValueNotifier<bool> _isExpanded = ValueNotifier<bool>(false);
 
   @override
   void initState() {
@@ -30,48 +36,90 @@ class _SelectableTagListState extends State<SelectableTagList> {
   }
 
   @override
+  void dispose() {
+    _isExpanded.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Wrap(
-      spacing: 8,
-      runSpacing: 18,
-      children: widget.items.map((item) {
-        final isSelected = _selectedItems.contains(item);
-        return ChoiceChip(
-          label: Text(item),
-          selected: isSelected,
-          onSelected: (selected) {
-            setState(() {
-              if (widget.isMultiSelect) { // 복수 선택
-                if (selected) {
-                  _selectedItems.add(item);
-                } else {
-                  _selectedItems.remove(item);
-                }
-              } else { // 단일 선택
-                _selectedItems.clear();
-                if (selected) {
-                  _selectedItems.add(item);
-                }
-              }
-              print('selectItem: $item');
-              widget.onSelectionChanged(_selectedItems.toList());
-            });
-          },
-          padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 6),
-          showCheckmark: false,
-          labelStyle: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w400,
-            color: isSelected ? Colors.white : ColorStyles.primaryBlue
+    final isSignupType = widget.type == TagType.signup;
+    final displayItems = _isExpanded.value == true
+        ? widget.items
+        : widget.items.take(_maxVisibleItems).toList();
+    final showExpandButton = widget.items.length > _maxVisibleItems;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Wrap(
+          spacing: isSignupType ? 8 : 6,
+          runSpacing: isSignupType ? 18 : 8,
+          children: displayItems.map((item) {
+            final isSelected = _selectedItems.contains(item);
+            return ChoiceChip(
+              label: Text(item),
+              selected: isSelected,
+              onSelected: (selected) {
+                setState(() {
+                  if (widget.isMultiSelect) {
+                    if (selected) {
+                      _selectedItems.add(item);
+                    } else {
+                      _selectedItems.remove(item);
+                    }
+                  } else {
+                    _selectedItems.clear();
+                    if (selected) {
+                      _selectedItems.add(item);
+                    }
+                  }
+                  widget.onSelectionChanged(_selectedItems.toList());
+                });
+              },
+              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 6),
+              showCheckmark: false,
+              labelStyle: TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400,
+                  color: isSelected ? Colors.white : ColorStyles.primaryBlue
+              ),
+              selectedColor: ColorStyles.primaryBlue,
+              backgroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(24),
+                side: const BorderSide(color: ColorStyles.primaryBlue),
+              ),
+            );
+          }).toList(),
+        ),
+        if (showExpandButton)
+          TextButton(
+            onPressed: () {
+              setState(() {
+                _isExpanded.value = !_isExpanded.value;
+              });
+            },
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  _isExpanded.value ? '접기' : '더보기',
+                  style: const TextStyle(
+                    color: Colors.black54,
+                    fontSize: 14,
+                  ),
+                ),
+                Icon(
+                  _isExpanded.value
+                      ? Icons.keyboard_arrow_up
+                      : Icons.keyboard_arrow_down,
+                  color: Colors.black54,
+                ),
+              ],
+            ),
           ),
-          selectedColor: ColorStyles.primaryBlue,
-          backgroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
-            side: const BorderSide(color: ColorStyles.primaryBlue),
-          ),
-        );
-      }).toList(),
+      ],
     );
   }
 }
