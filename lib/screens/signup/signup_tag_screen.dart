@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:sasimee/screens/signup/signup_tag_viewmodel.dart';
 import 'package:sasimee/screens/signup/views/signup_age_tag.dart';
 import 'package:sasimee/screens/signup/views/signup_area_tag.dart';
+import 'package:sasimee/screens/signup/views/signup_gender_tag.dart';
 import 'package:sasimee/styles/color_styles.dart';
 import 'package:sasimee/utils/constants.dart';
 
@@ -54,6 +55,7 @@ class SignupTagScreen extends StatelessWidget {
                               children: const [
                                 SignupAgeTag(),
                                 SignupAreaTag(),
+                                SignupGenderTag(),
                               ],
                             );
                           }),

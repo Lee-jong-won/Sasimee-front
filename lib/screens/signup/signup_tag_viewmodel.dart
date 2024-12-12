@@ -12,6 +12,9 @@ class SignupTagViewModel extends ChangeNotifier {
   List<String> _selectedAreaGroups = [];
   get selectedAreaGroups => _selectedAreaGroups;
 
+  List<String> _selectedGenderGroups = [];
+  get selectedGenderGroups => _selectedGenderGroups;
+
   bool _isNextButtonEnabled = false;
   get isNextButtonEnabled => _isNextButtonEnabled;
 
@@ -28,6 +31,12 @@ class SignupTagViewModel extends ChangeNotifier {
 
   void setSelectedAreaGroups(List<String> groups) {
     _selectedAreaGroups = groups;
+    _isNextButtonEnabled = groups.isNotEmpty;
+    notifyListeners();
+  }
+
+  void setSelectedGenderGroups(List<String> groups) {
+    _selectedGenderGroups = groups;
     _isNextButtonEnabled = groups.isNotEmpty;
     notifyListeners();
   }
