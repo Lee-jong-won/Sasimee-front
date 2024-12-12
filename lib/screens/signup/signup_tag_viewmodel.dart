@@ -18,6 +18,9 @@ class SignupTagViewModel extends ChangeNotifier {
   List<String> _selectedTypeGroups = [];
   get selectedTypeGroups => _selectedTypeGroups;
 
+  List<String> _selectedSubjectGroups = [];
+  get selectedSubjectGroups => _selectedSubjectGroups;
+
   bool _isNextButtonEnabled = false;
   get isNextButtonEnabled => _isNextButtonEnabled;
 
@@ -50,6 +53,12 @@ class SignupTagViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setSelectedSubjectGroups(List<String> groups) {
+    _selectedSubjectGroups = groups;
+    _isNextButtonEnabled = groups.isNotEmpty;
+    notifyListeners();
+  }
+
   void goToNextStep() {
     if (_currentStep < MAX_SIGNUP_STEP - 1) {
       _currentStep++;
@@ -73,6 +82,9 @@ class SignupTagViewModel extends ChangeNotifier {
           break;
         case 3:
           _isNextButtonEnabled = _selectedTypeGroups.isNotEmpty;
+          break;
+        case 4:
+          _isNextButtonEnabled = _selectedSubjectGroups.isNotEmpty;
           break;
         default:
           _isNextButtonEnabled = false;
