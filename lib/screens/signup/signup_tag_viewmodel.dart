@@ -62,8 +62,30 @@ class SignupTagViewModel extends ChangeNotifier {
   void goToNextStep() {
     if (_currentStep < MAX_SIGNUP_STEP - 1) {
       _currentStep++;
-      _isNextButtonEnabled = false;
+      _updateNextButtonState();
       notifyListeners();
+    }
+  }
+
+  void _updateNextButtonState() {
+    switch (_currentStep) {
+      case 0:
+        _isNextButtonEnabled = _selectedAgeGroups.isNotEmpty;
+        break;
+      case 1:
+        _isNextButtonEnabled = _selectedAreaGroups.isNotEmpty;
+        break;
+      case 2:
+        _isNextButtonEnabled = _selectedGenderGroups.isNotEmpty;
+        break;
+      case 3:
+        _isNextButtonEnabled = _selectedTypeGroups.isNotEmpty;
+        break;
+      case 4:
+        _isNextButtonEnabled = _selectedSubjectGroups.isNotEmpty;
+        break;
+      default:
+        _isNextButtonEnabled = false;
     }
   }
 
