@@ -7,6 +7,7 @@ import 'package:sasimee/screens/signup/views/signup_area_tag.dart';
 import 'package:sasimee/screens/signup/views/signup_gender_tag.dart';
 import 'package:sasimee/screens/signup/views/signup_subject_tag.dart';
 import 'package:sasimee/screens/signup/views/signup_type_tag.dart';
+import 'package:sasimee/screens/signup/signup_complete_screen.dart';
 import 'package:sasimee/styles/color_styles.dart';
 import 'package:sasimee/utils/constants.dart';
 
@@ -98,6 +99,8 @@ class SignupTagScreen extends StatelessWidget {
               onPressed: viewModel.isNextButtonEnabled
                   ? () {
                 if (isLast) {
+                  Navigator.of(context)
+                      .pushNamed(SignupCompleteScreen.routeName);
                 } else {
                   viewModel.goToNextStep();
                 }
