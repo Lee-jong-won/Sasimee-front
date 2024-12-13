@@ -129,7 +129,7 @@ class _SignupAuthScreenState extends State<SignupAuthScreen> {
         children: [
           _doneButton(viewModel, context),
           const SizedBox(height: 30),
-          Visibility.maintain(child: _placeholder(context))
+          Visibility.maintain(child: _placeholder())
         ],
       );
     });
@@ -155,7 +155,7 @@ class _SignupAuthScreenState extends State<SignupAuthScreen> {
     );
   }
 
-  Widget _placeholder(BuildContext context) {
+  Widget _placeholder() {
     return const Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
