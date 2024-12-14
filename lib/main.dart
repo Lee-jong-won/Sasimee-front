@@ -6,7 +6,10 @@ import 'package:sasimee/screens/login/login_viewmodel.dart';
 import 'package:sasimee/screens/main/experiment/experiment_screen.dart';
 import 'package:sasimee/screens/main/experiment/survey/survey_create_screen.dart';
 import 'package:sasimee/screens/main/main_screen.dart';
+import 'package:sasimee/screens/signup/signup_auth_screen.dart';
 import 'package:sasimee/screens/signup/signup_screen.dart';
+import 'package:sasimee/screens/signup/signup_tag_screen.dart';
+import 'package:sasimee/screens/signup/signup_complete_screen.dart';
 import 'package:sasimee/styles/color_styles.dart';
 
 import 'enums/experiment_type.dart';
@@ -31,6 +34,12 @@ void main() async {
 final route = {
   LoginScreen.routeName: (context) => const LoginScreen(),
   SignupScreen.routeName: (context) => const SignupScreen(),
+  SignupAuthScreen.routeName: (context) {
+    String email = ModalRoute.of(context)!.settings.arguments as String;
+    return SignupAuthScreen(email: email);
+  },
+  SignupTagScreen.routeName: (context) => const SignupTagScreen(),
+  SignupCompleteScreen.routeName: (context) => const SignupCompleteScreen(),
   MainScreen.routeName: (context) => const MainScreen(),
   ExperimentScreen.routeName: (context) {
     final args = ModalRoute.of(context)!.settings.arguments as ExperimentType;

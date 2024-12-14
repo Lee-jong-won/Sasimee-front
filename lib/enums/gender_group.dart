@@ -1,5 +1,5 @@
 enum GenderGroup {
-  irrelevant('성별 무관'),
+  regardless('성별 무관'),
   male('남성'),
   female('여성');
 

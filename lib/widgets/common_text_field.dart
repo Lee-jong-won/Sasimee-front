@@ -15,6 +15,9 @@ class TextFieldType {
   static final name = TextFieldType("name_hint".tr(), SvgIcons.person);
   static final mobileNumber =
   TextFieldType("mobile_number_hint".tr(), SvgIcons.call);
+  static final authenticationNumber = TextFieldType(
+      "enter_authentication_number".tr().replaceAll('\n', ' '),
+      null);
 
   final String hintText;
   final SvgPicture? prefixIcon;
@@ -52,6 +55,8 @@ class _CommonTextFieldState extends State<CommonTextField> {
     final isPasswordField = widget.type == TextFieldType.password ||
         widget.type == TextFieldType.passwordConfirmation;
     final isMobileNumberField = widget.type == TextFieldType.mobileNumber;
+    final isAuthenticationNumberField =
+        widget.type == TextFieldType.authenticationNumber;
 
     final phoneCode = isMobileNumberField
         ? CountryWithPhoneCode(
@@ -78,7 +83,9 @@ class _CommonTextFieldState extends State<CommonTextField> {
         },
         child: TextField(
           controller: widget.textEditingController,
-          maxLength: isMobileNumberField ? 13 : widget.maxLength,
+          maxLength: isMobileNumberField
+              ? 13
+              : (isAuthenticationNumberField ? 6 : widget.maxLength),
           inputFormatters: isMobileNumberField
               ? [
             LibPhonenumberTextFormatter(
@@ -89,7 +96,20 @@ class _CommonTextFieldState extends State<CommonTextField> {
               additionalDigits: 3,
             ),
           ]
+              : (isAuthenticationNumberField
+              ? [
+            FilteringTextInputFormatter.digitsOnly,
+            LengthLimitingTextInputFormatter(6),
+          ]
+              : null),
+          style: isAuthenticationNumberField
+              ? const TextStyle(
+            fontSize: 14,
+            letterSpacing: 6,
+          )
               : null,
+          keyboardType:
+          isAuthenticationNumberField ? TextInputType.number : null,
           cursorColor: Colors.black54,
           obscureText: isPasswordField ? _obscureText : false,
           decoration: InputDecoration(
@@ -124,6 +144,7 @@ class _CommonTextFieldState extends State<CommonTextField> {
             hintStyle: const TextStyle(
                 color: ColorStyles.hintText,
                 fontSize: 14,
+                letterSpacing: 1,
                 fontWeight: FontWeight.w400),
             focusColor: ColorStyles.translucenceBlue,
             focusedBorder: const OutlineInputBorder(
