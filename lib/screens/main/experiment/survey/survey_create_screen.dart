@@ -2,12 +2,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sasimee/enums/age_group.dart';
 import 'package:sasimee/enums/gender_group.dart';
+import 'package:sasimee/enums/subject_group.dart';
 import 'package:sasimee/enums/tag_type.dart';
-import 'package:sasimee/enums/topic_group.dart';
-import 'package:sasimee/widgets/common_text_field.dart';
 import 'package:sasimee/widgets/common_time_picker.dart';
+import 'package:sasimee/widgets/outline_text_field.dart';
 
 import '../../../../styles/color_styles.dart';
+import '../../../../styles/icons.dart';
 import '../../../../widgets/common_date_picker.dart';
 import '../../../../widgets/selectable_tag_list.dart';
 
@@ -29,18 +30,24 @@ class _SurveyCreateScreenState extends State<SurveyCreateScreen> {
       appBar: AppBar(),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-          child: Column(
-            children: [
-              _surveyInformationLayout(),
-              const Divider(height: 8, color: ColorStyles.dividerBackground,),
-              _experimenterInfoLayout(),
-              const SizedBox(height: 72,),
-              _doneButton(),
-              const SizedBox(height: 100,),
-            ],
-          ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+              child: _surveyInformationLayout(),
+            ),
+            const Divider(thickness: 8, color: ColorStyles.layoutBackground,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+              child: _experimenterInfoLayout(),
+            ),
+            const SizedBox(height: 72,),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+              child: _doneButton(),
+            ),
+            const SizedBox(height: 100,),
+          ],
         ),
       ),
     );
@@ -62,9 +69,8 @@ class _SurveyCreateScreenState extends State<SurveyCreateScreen> {
           ),
         ),
         const SizedBox(height: 8,),
-        CommonTextField(
+        OutlineTextField(
             textEditingController: titleController,
-            type: TextFieldType.basic,
             focusNode: titleFocusNode
         ),
         const SizedBox(height: 32,),
@@ -127,12 +133,13 @@ class _SurveyCreateScreenState extends State<SurveyCreateScreen> {
             padding: const EdgeInsets.only(right: 50),
             child: SelectableTagList(
               type: TagType.experiment,
-              items: TopicGroup.getTopicTagList(),
+              items: SubjectGroup.getSubjectTagList(),
               isMultiSelect: true,
               initialSelection: [],
               onSelectionChanged: (selectedItems) {
                 [];
               },
+              canPreview: true,
             ),
           ),
         ),
@@ -179,7 +186,7 @@ class _SurveyCreateScreenState extends State<SurveyCreateScreen> {
               Expanded(child: SizedBox()),
               IconButton(onPressed: (){
                 //TODO: 설문 검수 화면으로 이동
-              }, icon: const Icon(Icons.keyboard_arrow_right)),
+              }, icon: SvgIcons.arrowRight),
             ],
           ),
         ),
@@ -197,7 +204,7 @@ class _SurveyCreateScreenState extends State<SurveyCreateScreen> {
       decoration: BoxDecoration(
         border: Border.all(color: ColorStyles.dividerBackground),
         borderRadius: BorderRadius.circular(12),
-        color: ColorStyles.textFieldBackground
+        color: ColorStyles.layoutBackground
       ),
       child: Column(
         children: [
@@ -324,9 +331,8 @@ class _SurveyCreateScreenState extends State<SurveyCreateScreen> {
           ),
         ),
         const SizedBox(height: 8,),
-        CommonTextField(
+        OutlineTextField(
             textEditingController: titleController,
-            type: TextFieldType.basic,
             focusNode: titleFocusNode
         ),
       ],
