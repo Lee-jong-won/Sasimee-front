@@ -50,6 +50,9 @@
   "survey_experimenter_information": "실험자 정보",
   "survey_experimenter_name": "실험자 이름",
   "survey_experimenter_guide": "속한 기관 혹은 기업, 연구실 등의 이름을 적어주세요.",
+  "survey_inspection_guide": "이런 기준으로 검수돼요.",
+  "survey_inspection_criteria": "· 오/탈자가 없는지 확인합니다.\n· 이해하기 쉬운 언어로 구성되어 있는지 확인합니다.\n· 질문의 선택지가 누락되거나 겹치지 않는지 확인합니다.\n · 이중 질문이 없는지 확인합니다.\n· 중복되거나 누락된 질문이 없는지 확인합니다.\n· 문항 순서가 올바른지 확인합니다.\n· 응답 태도에 영향을 미칠 만한 요소가 있는지 확인합니다.\n· 설문지 주소나 컨텐츠에 문제가 없는지 확인합니다.",
+  "survey_do_inspect": "검수 받기",
 
   "done": "작성 완료",
 

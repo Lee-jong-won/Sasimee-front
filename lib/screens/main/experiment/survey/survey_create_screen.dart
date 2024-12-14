@@ -4,6 +4,7 @@ import 'package:sasimee/enums/age_group.dart';
 import 'package:sasimee/enums/gender_group.dart';
 import 'package:sasimee/enums/subject_group.dart';
 import 'package:sasimee/enums/tag_type.dart';
+import 'package:sasimee/screens/main/experiment/survey/survey_inspect_screen.dart';
 import 'package:sasimee/widgets/common_time_picker.dart';
 import 'package:sasimee/widgets/outline_text_field.dart';
 
@@ -172,22 +173,28 @@ class _SurveyCreateScreenState extends State<SurveyCreateScreen> {
           ),
         ),
         const SizedBox(height: 8,),
-        Container(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: ColorStyles.dividerBackground),
-            color: ColorStyles.textFieldBackground,
-          ),
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          width: double.infinity,
-          height: 50,
-          child: Row(
-            children: [
-              Expanded(child: SizedBox()),
-              IconButton(onPressed: (){
-                //TODO: 설문 검수 화면으로 이동
-              }, icon: SvgIcons.arrowRight),
-            ],
+        GestureDetector(
+          onTap: (){
+            // 실험 작성 화면으로 이동
+            Navigator.of(context).pushNamed(SurveyInspectScreen.routeName);
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: ColorStyles.dividerBackground),
+              color: ColorStyles.textFieldBackground,
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            width: double.infinity,
+            height: 50,
+            child: Row(
+              children: [
+                Expanded(child: SizedBox()),
+                IconButton(onPressed: (){
+                  //TODO: 설문 검수 화면으로 이동
+                }, icon: SvgIcons.arrowRight),
+              ],
+            ),
           ),
         ),
         const SizedBox(height: 37,)
