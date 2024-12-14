@@ -85,7 +85,7 @@ class SasimeeApp extends StatelessWidget {
           scrolledUnderElevation: 0,
         ),
       ),
-      initialRoute: MainScreen.routeName,
+      initialRoute: LoginScreen.routeName,
       routes: route,
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,

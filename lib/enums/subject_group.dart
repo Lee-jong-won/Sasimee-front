@@ -23,4 +23,8 @@ enum SubjectGroup {
 
   final String label;
   const SubjectGroup(this.label);
+
+  static List<String> getSubjectTagList() {
+    return SubjectGroup.values.map((topic) => topic.label).toList();
+  }
 }

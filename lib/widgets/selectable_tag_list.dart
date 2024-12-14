@@ -9,14 +9,16 @@ class SelectableTagList extends StatefulWidget {
   final bool isMultiSelect;
   final Function(List<String>) onSelectionChanged;
   final List<String> initialSelection; // 초기 선택값
+  final bool canPreview;
 
   const SelectableTagList({
     super.key,
-    this.type = TagType.experiment,
+    this.type = TagType.signup,
     required this.items,
     required this.isMultiSelect,
     required this.onSelectionChanged,
     this.initialSelection = const [], // 기본값은 빈 리스트
+    this.canPreview = false // 더보기 버튼을 지원하는 경우
   });
 
   @override
@@ -47,7 +49,7 @@ class _SelectableTagListState extends State<SelectableTagList> {
     final displayItems = _isExpanded.value == true
         ? widget.items
         : widget.items.take(_maxVisibleItems).toList();
-    final showExpandButton = widget.items.length > _maxVisibleItems;
+    final showExpandButton = (widget.items.length > _maxVisibleItems) && widget.canPreview;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
