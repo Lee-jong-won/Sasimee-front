@@ -8,6 +8,7 @@ import 'package:sasimee/styles/icons.dart';
 import '../styles/color_styles.dart';
 
 class TextFieldType {
+  static final basic = TextFieldType("", null);
   static final email = TextFieldType("email_hint".tr(), SvgIcons.email);
   static final password = TextFieldType("password_hint".tr(), SvgIcons.lock);
   static final passwordConfirmation =
@@ -17,10 +18,10 @@ class TextFieldType {
   TextFieldType("mobile_number_hint".tr(), SvgIcons.call);
   static final authenticationNumber = TextFieldType(
       "enter_authentication_number".tr().replaceAll('\n', ' '),
-      SvgIcons.person);
+      null);
 
   final String hintText;
-  final SvgPicture prefixIcon;
+  final SvgPicture? prefixIcon;
 
   TextFieldType(this.hintText, this.prefixIcon);
 }
@@ -120,12 +121,13 @@ class _CommonTextFieldState extends State<CommonTextField> {
                 : ColorStyles.textFieldBackground,
             contentPadding:
             const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
-            prefixIcon: isAuthenticationNumberField
-                ? null
-                : Padding(
-              padding: const EdgeInsets.all(12.0),
-              child: widget.type.prefixIcon,
-            ),
+            prefixIcon: widget.type.prefixIcon != null
+                ? Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: widget.type.prefixIcon,
+                  )
+                : null,
+            suffix: widget.suffix,
             suffixIcon: isPasswordField
                 ? IconButton(
               icon: Icon(
@@ -138,7 +140,7 @@ class _CommonTextFieldState extends State<CommonTextField> {
                 });
               },
             )
-                : widget.suffix,
+                : null,
             hintText: widget.type.hintText,
             hintStyle: const TextStyle(
                 color: ColorStyles.hintText,

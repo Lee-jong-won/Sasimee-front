@@ -9,4 +9,8 @@ enum AgeGroup {
 
   final String label;
   const AgeGroup(this.label);
+
+  static List<String> getAgeTagList() {
+    return AgeGroup.values.map((age) => age.label).toList();
+  }
 }
