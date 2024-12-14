@@ -53,8 +53,11 @@
   "survey_inspection_guide": "이런 기준으로 검수돼요.",
   "survey_inspection_criteria": "· 오/탈자가 없는지 확인합니다.\n· 이해하기 쉬운 언어로 구성되어 있는지 확인합니다.\n· 질문의 선택지가 누락되거나 겹치지 않는지 확인합니다.\n · 이중 질문이 없는지 확인합니다.\n· 중복되거나 누락된 질문이 없는지 확인합니다.\n· 문항 순서가 올바른지 확인합니다.\n· 응답 태도에 영향을 미칠 만한 요소가 있는지 확인합니다.\n· 설문지 주소나 컨텐츠에 문제가 없는지 확인합니다.",
   "survey_do_inspect": "검수 받기",
+  "survey_inspect_dialog_title": "잘못된 링크입니다.",
+  "survey_inspect_dialog_description": "링크를 다시 확인해서\n올바른 주소로 다시 올려주세요",
 
   "done": "작성 완료",
+  "ok": "확인",
 
   "perform_recommend_title": "추천하는 수행형 사회·심리 실험",
   "perform_description": "신뢰를 바탕으로\n의미 있는 결과 도출",
