@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:sasimee/screens/main/experiment/perform/views/perform_detail_view.dart';
 import 'package:sasimee/styles/color_styles.dart';
 
 class PerformInfoScreen extends StatelessWidget {
@@ -22,24 +23,32 @@ class PerformInfoScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
             child: Column(
               children: [
-                /// 실험 내용
-                _performInfoLayout(),
-                const SizedBox(height: 36),
-                /// 탭바
-                _tabBar(),
-                /// TabBarView
                 Expanded(
-                  child: TabBarView(
+                  child: Column(
                     children: [
-                      Container(color: Colors.grey,), // 상세 내용
-                      Container(color: Colors.black,), // 태그 목록
-                      Container(color: Colors.cyan,) // 실험자 정보
+                      /// 실험 내용
+                      _performInfoLayout(),
+                      const SizedBox(height: 36),
+                      /// 탭바
+                      _tabBar(),
+                      /// TabBarView
+                      Expanded(
+                        child: TabBarView(
+                          children: [
+                            const PerformDetailView(), // 상세 내용
+                            Container(color: Colors.black,), // 태그 목록
+                            Container(color: Colors.cyan,) // 실험자 정보
+                          ],
+                        ),
+                      ),
                     ],
                   ),
                 ),
+                const SizedBox(height: 6,),
+                _doneButton(),
               ],
             ),
-          )
+          ),
       ),
     );
   }
@@ -120,6 +129,26 @@ class PerformInfoScreen extends StatelessWidget {
         Tab(text: '태그 목록'),
         Tab(text: '실험자 정보'),
       ],
+    );
+  }
+
+  //TODO: 지원 여부, 작성자 여부에 따른 버튼 변경
+  Widget _doneButton() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(vertical: 12),
+      decoration: BoxDecoration(
+        color: ColorStyles.primaryBlue,
+        borderRadius: BorderRadius.circular(50),
+      ),
+      child: Text("apply".tr(),
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          color: Colors.white,
+        ),
+      ),
     );
   }
 }
