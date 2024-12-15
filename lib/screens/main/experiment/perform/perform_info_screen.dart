@@ -59,14 +59,12 @@ class PerformInfoScreen extends StatelessWidget {
     return AppBar(
       scrolledUnderElevation: 0, // 스크롤 시 앱바가 어두워지는 현상 제거
       backgroundColor: Colors.white,
-      title: Center(
-        child: Text('perform_information'.tr(),
-          style: TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.w600
-          ),
-        )
+      title: Text('perform_information'.tr(),
+        style: const TextStyle(
+          color: Colors.black,
+          fontSize: 20,
+          fontWeight: FontWeight.w600
+        ),
       ),
     );
   }
