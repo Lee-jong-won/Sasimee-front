@@ -25,4 +25,6 @@ class PngImages {
 
   static Image surveyGraphic = Image.asset('assets/images/graphics/img_survey.png');
   static Image performGraphic = Image.asset('assets/images/graphics/img_perform.png');
+
+  static Image exPerimenterExample = Image.asset('assets/images/banners/experimenter_example.png');
 }

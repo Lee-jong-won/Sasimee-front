@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sasimee/screens/main/experiment/perform/views/perform_detail_view.dart';
+import 'package:sasimee/screens/main/experiment/perform/views/perform_experimenter_info_view.dart';
 import 'package:sasimee/screens/main/experiment/perform/views/perform_tag_view.dart';
 import 'package:sasimee/styles/color_styles.dart';
 
@@ -33,12 +34,12 @@ class PerformInfoScreen extends StatelessWidget {
                       /// 탭바
                       _tabBar(),
                       /// TabBarView
-                      Expanded(
+                      const Expanded(
                         child: TabBarView(
                           children: [
-                            const PerformDetailView(), // 상세 내용
-                            const PerformTagView(), // 태그 목록
-                            Container(color: Colors.cyan,) // 실험자 정보
+                            PerformDetailView(), // 상세 내용
+                            PerformTagView(), // 태그 목록
+                            PerformExperimenterInfoView() // 실험자 정보
                           ],
                         ),
                       ),
