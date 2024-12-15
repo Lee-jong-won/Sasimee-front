@@ -56,6 +56,23 @@
   "survey_inspect_dialog_title": "잘못된 링크입니다.",
   "survey_inspect_dialog_description": "링크를 다시 확인해서\n올바른 주소로 다시 올려주세요",
 
+  "participant_type": "실험 참여 유형",
+  "participant_guide_title": "참여 유형 선택 안내",
+  "participant_guide_content": "· 사용자들에게 태그로 보여져요.\n· 태그는 사실대로 선택해주세요.\n· 추가 지원자의 정보는 어플에서 제공하지 않아요.\n· 지원자와 연락해 협의해주세요.",
+  "perform_topic": "실험 주제",
+  "perform_period": "실험 기간",
+  "perform_time": "실험 시간",
+  "start": "시작",
+  "end": "종료",
+  "salary": "급여",
+  "salary_guide": "최저임금을 반드시 지켜서 전체 수당을 입력해주세요.",
+  "perform_detail_explain": "자세한 설명",
+  "perform_detail_hint": "실험에 대한 구체적인 사항을 알려주세요. (실험 내용, 실험 환경, 준비물 등)",
+  "picture": "사진",
+  "picture_guide": "로고 사진을 올려주세요. (312px * 104px)",
+  "address": "주소",
+  "selected_address_tag": "선택된 지역 태그",
+
   "done": "작성 완료",
   "ok": "확인",
 
