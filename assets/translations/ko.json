@@ -62,6 +62,7 @@
   "perform_topic": "실험 주제",
   "perform_period": "실험 기간",
   "perform_time": "실험 시간",
+  "area": "지역",
   "start": "시작",
   "end": "종료",
   "salary": "급여",
@@ -75,6 +76,7 @@
   "perform_information": "실험 정보",
   "perform_condition": "실험 조건",
   "perform_detail_content": "상세 내용",
+  "perform_tag_list": "태그 목록",
 
   "done": "작성 완료",
   "ok": "확인",

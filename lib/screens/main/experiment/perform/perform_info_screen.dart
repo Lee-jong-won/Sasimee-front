@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:sasimee/screens/main/experiment/perform/views/perform_detail_view.dart';
+import 'package:sasimee/screens/main/experiment/perform/views/perform_tag_view.dart';
 import 'package:sasimee/styles/color_styles.dart';
 
 class PerformInfoScreen extends StatelessWidget {
@@ -36,7 +37,7 @@ class PerformInfoScreen extends StatelessWidget {
                         child: TabBarView(
                           children: [
                             const PerformDetailView(), // 상세 내용
-                            Container(color: Colors.black,), // 태그 목록
+                            const PerformTagView(), // 태그 목록
                             Container(color: Colors.cyan,) // 실험자 정보
                           ],
                         ),
