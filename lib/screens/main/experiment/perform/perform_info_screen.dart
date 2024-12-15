@@ -27,7 +27,7 @@ class PerformInfoScreen extends StatelessWidget {
                 const SizedBox(height: 36),
                 /// 탭바
                 _tabBar(),
-                /// TabBarView를 Expanded로 감싸기
+                /// TabBarView
                 Expanded(
                   child: TabBarView(
                     children: [
