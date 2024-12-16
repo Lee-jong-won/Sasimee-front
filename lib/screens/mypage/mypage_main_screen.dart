@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:sasimee/enums/experiment_type.dart';
 import 'package:sasimee/screens/mypage/mypage_main_viewmodel.dart';
 import 'package:sasimee/screens/mypage/mypage_profile_screen.dart';
+import 'package:sasimee/screens/mypage/mypage_tag_screen.dart';
 import 'package:sasimee/styles/color_styles.dart';
 import 'package:sasimee/widgets/tag_item.dart';
 
@@ -52,7 +53,6 @@ class _MypageMainScreenState extends State<MypageMainScreen> {
   }
 }
 
-/// 헤더 위젯 (이름, 프로필 관리, 태그 관리 및 탭 위젯)
 class _HeaderWidget extends StatelessWidget {
   const _HeaderWidget({super.key});
 
@@ -142,7 +142,9 @@ class _HeaderWidget extends StatelessWidget {
                           Material(
                             color: Colors.transparent,
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).pushNamed(MypageTagScreen.routeName);
+                              },
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
@@ -276,7 +278,6 @@ class _HeaderWidget extends StatelessWidget {
   }
 }
 
-/// 지원 내역 페이지
 class _ApplicationDetailsWidget extends StatelessWidget {
   const _ApplicationDetailsWidget({super.key});
 
@@ -322,7 +323,6 @@ class _ApplicationDetailsWidget extends StatelessWidget {
   }
 }
 
-/// 모집 내역 페이지
 class _RecruitmentDetailsWidget extends StatelessWidget {
   const _RecruitmentDetailsWidget({super.key});
 
@@ -368,9 +368,8 @@ class _RecruitmentDetailsWidget extends StatelessWidget {
   }
 }
 
-/// 지원 및 모집 내역 페이지의 리스트 아이템
 class _ItemWidget extends StatelessWidget {
-  final String title; //TODO: Perform 데이터로 변경
+  final String title;
 
   const _ItemWidget({super.key, required this.title});
 

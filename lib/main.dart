@@ -13,6 +13,7 @@ import 'package:sasimee/screens/main/experiment/survey/survey_inspect_screen.dar
 import 'package:sasimee/screens/main/main_screen.dart';
 import 'package:sasimee/screens/mypage/mypage_main_screen.dart';
 import 'package:sasimee/screens/mypage/mypage_profile_screen.dart';
+import 'package:sasimee/screens/mypage/mypage_tag_screen.dart';
 import 'package:sasimee/screens/signup/signup_auth_screen.dart';
 import 'package:sasimee/screens/signup/signup_screen.dart';
 import 'package:sasimee/screens/signup/signup_tag_screen.dart';
@@ -68,6 +69,7 @@ final route = {
   },
   MypageMainScreen.routeName: (context) => const MypageMainScreen(),
   MypageProfileScreen.routeName: (context) => const MypageProfileScreen(),
+  MypageTagScreen.routeName: (context) => const MypageTagScreen(),
 };
 
 class SasimeeApp extends StatelessWidget {
@@ -93,7 +95,7 @@ class SasimeeApp extends StatelessWidget {
               foregroundColor: Colors.white,
               backgroundColor: ColorStyles.primaryBlue,
               textStyle:
-              const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+                  const TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
         ),
         appBarTheme: AppBarTheme.of(context).copyWith(
           backgroundColor: Colors.white,
