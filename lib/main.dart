@@ -1,5 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker_android/image_picker_android.dart';
+import 'package:image_picker_platform_interface/image_picker_platform_interface.dart';
 import 'package:provider/provider.dart';
 import 'package:sasimee/screens/login/login_screen.dart';
 import 'package:sasimee/screens/login/login_viewmodel.dart';
@@ -9,6 +11,7 @@ import 'package:sasimee/screens/main/experiment/perform/perform_info_screen.dart
 import 'package:sasimee/screens/main/experiment/survey/survey_create_screen.dart';
 import 'package:sasimee/screens/main/experiment/survey/survey_inspect_screen.dart';
 import 'package:sasimee/screens/main/main_screen.dart';
+import 'package:sasimee/screens/mypage/mypage_main_screen.dart';
 import 'package:sasimee/screens/signup/signup_auth_screen.dart';
 import 'package:sasimee/screens/signup/signup_screen.dart';
 import 'package:sasimee/screens/signup/signup_tag_screen.dart';
@@ -20,6 +23,13 @@ import 'enums/experiment_type.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+
+  final ImagePickerPlatform imagePickerImplementation =
+      ImagePickerPlatform.instance;
+  if (imagePickerImplementation is ImagePickerAndroid) {
+    imagePickerImplementation.useAndroidPhotoPicker = true;
+  }
+
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider(create: (_) => LoginViewModel()),
@@ -54,7 +64,8 @@ final route = {
   PerformInfoScreen.routeName: (context) {
     final args = ModalRoute.of(context)!.settings.arguments as String;
     return PerformInfoScreen(title: args);
-  }
+  },
+  MypageMainScreen.routeName: (context) => const MypageMainScreen(),
 };
 
 class SasimeeApp extends StatelessWidget {
