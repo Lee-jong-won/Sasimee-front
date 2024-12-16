@@ -5,6 +5,7 @@ import 'package:sasimee/screens/login/login_screen.dart';
 import 'package:sasimee/screens/login/login_viewmodel.dart';
 import 'package:sasimee/screens/main/experiment/experiment_screen.dart';
 import 'package:sasimee/screens/main/experiment/perform/perform_create_screen.dart';
+import 'package:sasimee/screens/main/experiment/perform/perform_info_screen.dart';
 import 'package:sasimee/screens/main/experiment/survey/survey_create_screen.dart';
 import 'package:sasimee/screens/main/experiment/survey/survey_inspect_screen.dart';
 import 'package:sasimee/screens/main/main_screen.dart';
@@ -49,7 +50,11 @@ final route = {
   },
   SurveyCreateScreen.routeName: (context) => const SurveyCreateScreen(),
   SurveyInspectScreen.routeName: (context) => const SurveyInspectScreen(),
-  PerformCreateScreen.routeName: (context) => const PerformCreateScreen()
+  PerformCreateScreen.routeName: (context) => const PerformCreateScreen(),
+  PerformInfoScreen.routeName: (context) {
+    final args = ModalRoute.of(context)!.settings.arguments as String;
+    return PerformInfoScreen(title: args);
+  }
 };
 
 class SasimeeApp extends StatelessWidget {
