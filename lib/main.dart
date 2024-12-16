@@ -12,6 +12,7 @@ import 'package:sasimee/screens/main/experiment/survey/survey_create_screen.dart
 import 'package:sasimee/screens/main/experiment/survey/survey_inspect_screen.dart';
 import 'package:sasimee/screens/main/main_screen.dart';
 import 'package:sasimee/screens/mypage/mypage_main_screen.dart';
+import 'package:sasimee/screens/mypage/mypage_profile_screen.dart';
 import 'package:sasimee/screens/signup/signup_auth_screen.dart';
 import 'package:sasimee/screens/signup/signup_screen.dart';
 import 'package:sasimee/screens/signup/signup_tag_screen.dart';
@@ -66,6 +67,7 @@ final route = {
     return PerformInfoScreen(title: args);
   },
   MypageMainScreen.routeName: (context) => const MypageMainScreen(),
+  MypageProfileScreen.routeName: (context) => const MypageProfileScreen(),
 };
 
 class SasimeeApp extends StatelessWidget {

@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sasimee/enums/experiment_type.dart';
 import 'package:sasimee/screens/mypage/mypage_main_viewmodel.dart';
+import 'package:sasimee/screens/mypage/mypage_profile_screen.dart';
 import 'package:sasimee/styles/color_styles.dart';
 import 'package:sasimee/widgets/tag_item.dart';
 
@@ -105,7 +106,9 @@ class _HeaderWidget extends StatelessWidget {
                           Material(
                             color: Colors.transparent,
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () {
+                                Navigator.of(context).pushNamed(MypageProfileScreen.routeName);
+                              },
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
