@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sasimee/models/request/auth/post_register_request.dart';
 import 'package:sasimee/screens/signup/signup_auth_viewmodel.dart';
 import 'package:sasimee/screens/signup/signup_tag_screen.dart';
 import 'package:sasimee/styles/color_styles.dart';
@@ -8,11 +10,11 @@ import 'package:sasimee/widgets/common_text_field.dart';
 import 'package:sprintf/sprintf.dart';
 
 class SignupAuthScreen extends StatefulWidget {
-  static String routeName = "/signup_auth";
+  static String routeName = "/login/register/auth";
 
-  final String email;
+  final PostRegisterRequest? request;
 
-  const SignupAuthScreen({required this.email, super.key});
+  const SignupAuthScreen({required this.request, super.key});
 
   @override
   State<SignupAuthScreen> createState() => _SignupAuthScreenState();
@@ -23,8 +25,16 @@ class _SignupAuthScreenState extends State<SignupAuthScreen> {
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
 
+    if (widget.request == null) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        Navigator.of(context).pop();
+      });
+
+      return Container();
+    }
+
     return ChangeNotifierProvider(
-      create: (_) => SignupAuthViewModel(),
+      create: (_) => SignupAuthViewModel(widget.request!),
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(title: Text('register'.tr())),
@@ -54,7 +64,7 @@ class _SignupAuthScreenState extends State<SignupAuthScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'enter_authentication_number'.tr(),
+                            'enter_authentication_code'.tr(),
                             style: const TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.w600,
@@ -62,8 +72,8 @@ class _SignupAuthScreenState extends State<SignupAuthScreen> {
                           ),
                           const SizedBox(height: 12),
                           Text(
-                            'sent_authentication_number'.tr(
-                              namedArgs: {'email': widget.email},
+                            'sent_authentication_code'.tr(
+                              namedArgs: {'email': viewModel.request.email},
                             ),
                             style: const TextStyle(
                               fontSize: 14,
@@ -88,10 +98,10 @@ class _SignupAuthScreenState extends State<SignupAuthScreen> {
 
                                 return CommonTextField(
                                   textEditingController:
-                                  viewModel.authenticationNumberController,
-                                  type: TextFieldType.authenticationNumber,
+                                  viewModel.authenticationCodeController,
+                                  type: TextFieldType.authenticationCode,
                                   focusNode:
-                                  viewModel.authenticationNumberFocusNode,
+                                  viewModel.authenticationCodeFocusNode,
                                   suffix: IntrinsicWidth(
                                     child: Center(
                                       child: Padding(
@@ -141,7 +151,28 @@ class _SignupAuthScreenState extends State<SignupAuthScreen> {
       child: ElevatedButton(
           onPressed: () async {
             if (viewModel.isButtonEnabled) {
-              Navigator.of(context).pushNamed(SignupTagScreen.routeName);
+              final response = await viewModel.verify();
+              if (!context.mounted) return;
+
+              if (response != null) {
+                if (response.status) {
+                  Navigator.of(context).pushReplacementNamed(
+                    SignupTagScreen.routeName,
+                    arguments: viewModel.request,
+                  );
+                } else {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(response.message),
+                      duration: const Duration(seconds: 2),
+                    ),
+                  );
+                }
+              } else {
+                if (kDebugMode) {
+                  print('Response is null.');
+                }
+              }
             } else {
               viewModel.requestOtp();
             }
@@ -151,7 +182,7 @@ class _SignupAuthScreenState extends State<SignupAuthScreen> {
           ),
           child: Text(viewModel.isButtonEnabled
               ? 'enter_complete'.tr()
-              : 'request_authentication_number'.tr())),
+              : 'request_authentication_code'.tr())),
     );
   }
 
