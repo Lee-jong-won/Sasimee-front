@@ -8,6 +8,7 @@ import 'package:sasimee/models/request/auth/post_register_request.dart';
 import 'package:sasimee/models/response/auth/post_email_send_response.dart';
 import 'package:sasimee/models/response/auth/post_login_response.dart';
 import 'package:sasimee/models/response/default_response.dart';
+import 'package:sasimee/models/response/mypage/profile_response.dart';
 
 import '../services/api/auth_api.dart';
 import '../services/data/secure_storage_service.dart';
@@ -51,7 +52,7 @@ class AuthRepository {
     }
   }
 
-  /// 인증 메일 보내기
+  /// 인증 메일 전송
   Future<PostEmailSendResponse?> sendAuthEmail(String email) async {
     try {
       final request = PostEmailSendRequest(
@@ -73,7 +74,7 @@ class AuthRepository {
     }
   }
 
-  /// 인증 코드 검증
+  /// 인증 코드 확인
   Future<DefaultResponse?> verifyEmail(String email, String authNum) async {
     try {
       final request = PostEmailVerifyRequest(
@@ -98,6 +99,22 @@ class AuthRepository {
   Future<DefaultResponse?> register(PostRegisterRequest request) async {
     try {
       var response = await _authApi.register(request);
+      return response;
+    } catch (e) {
+      logger.e("Failed to register.", error: e);
+
+      if (e is DioException && e.response != null) {
+        return null;
+      }
+
+      return null;
+    }
+  }
+
+  /// 프로필 가져오기
+  Future<FrProfile?> getProfile() async {
+    try {
+      var response = await _authApi.getProfile();
       return response;
     } catch (e) {
       logger.e("Failed to register.", error: e);

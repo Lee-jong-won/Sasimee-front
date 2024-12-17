@@ -7,12 +7,10 @@ class PostLoginRequest {
   String email;
   String password;
 
-  PostLoginRequest({
-    required this.email,
-    required this.password
-  });
+  PostLoginRequest({required this.email, required this.password});
 
-  factory PostLoginRequest.fromJson(Map<String, dynamic> json) => _$PostLoginRequestFromJson(json);
+  factory PostLoginRequest.fromJson(Map<String, dynamic> json) =>
+      _$PostLoginRequestFromJson(json);
 
   Map<String, dynamic> toJson() => _$PostLoginRequestToJson(this);
 }

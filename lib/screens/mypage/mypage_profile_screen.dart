@@ -119,37 +119,20 @@ class _MypageProfileScreenState extends State<MypageProfileScreen> {
                     const SizedBox(height: 48),
                     CommonTextField(
                       textEditingController: viewModel.emailController,
-                      type: TextFieldType.email,
+                      type: TextFieldType.profileEmail,
                       focusNode: viewModel.emailFocusNode,
-                      showPrefix: false,
                     ),
                     const SizedBox(height: 20),
                     CommonTextField(
                       textEditingController: viewModel.nameController,
-                      type: TextFieldType.name,
+                      type: TextFieldType.profileName,
                       focusNode: viewModel.nameFocusNode,
-                      showPrefix: false,
-                      suffixIcon: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.edit,
-                          color: Colors.grey,
-                        ),
-                      ),
                     ),
                     const SizedBox(height: 20),
                     CommonTextField(
                       textEditingController: viewModel.mobileNumberController,
-                      type: TextFieldType.mobileNumber,
+                      type: TextFieldType.profileMobileNumber,
                       focusNode: viewModel.mobileNumberFocusNode,
-                      showPrefix: false,
-                      suffixIcon: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.edit,
-                          color: Colors.grey,
-                        ),
-                      ),
                     ),
                     const Spacer(),
                     Consumer<MypageProfileViewModel>(

@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:sasimee/models/response/mypage/profile_response.dart';
+import 'package:sasimee/repositories/auth_repository.dart';
 
 class MypageMainViewModel with ChangeNotifier {
   late final _pageController = PageController();
 
+  late final _repository = AuthRepository();
   PageController get pageController => _pageController;
 
   int get index =>
@@ -15,12 +18,22 @@ class MypageMainViewModel with ChangeNotifier {
     }
   }
 
-  MypageMainViewModel();
+  FrProfile? profile;
+  MypageMainViewModel() {
+    refresh();
+  }
 
   @override
   void dispose() {
     _pageController.dispose();
 
     super.dispose();
+  }
+
+  void refresh() {
+    _repository.getProfile().then((profile) {
+      this.profile = profile;
+      notifyListeners();
+    });
   }
 }
