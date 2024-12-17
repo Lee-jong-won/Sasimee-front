@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
+import 'package:sasimee/repositories/auth_repository.dart';
 
 import '../../utils/validator.dart';
 
 class MypageProfileViewModel with ChangeNotifier {
+  late final _repository = AuthRepository();
+
   final TextEditingController _nameController = TextEditingController();
   TextEditingController get nameController => _nameController;
 
@@ -38,6 +41,13 @@ class MypageProfileViewModel with ChangeNotifier {
     _nameController.addListener(_validateInputs);
     _emailController.addListener(_validateInputs);
     _mobileNumberController.addListener(_validateInputs);
+
+    _repository.getProfile().then((profile) {
+      if (profile == null) return;
+      _nameController.text = profile.name;
+      _emailController.text = profile.email;
+      _mobileNumberController.text = profile.phonenumber;
+    });
   }
 
   void _validateInputs() {
@@ -66,11 +76,10 @@ class MypageProfileViewModel with ChangeNotifier {
     super.dispose();
   }
 
-  Future<bool> done() async {
+  Future<void> update() {
     final name = _nameController.text.trim();
-    final email = _emailController.text.trim();
     final mobileNumber = _mobileNumberController.text.trim();
 
-    return true;
+    return _repository.modifyProfile(name: name, mobileNumber: mobileNumber);
   }
 }

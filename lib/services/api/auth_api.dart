@@ -7,6 +7,9 @@ import 'package:sasimee/models/request/auth/post_register_request.dart';
 import 'package:sasimee/models/request/auth/post_login_request.dart';
 import 'package:sasimee/models/response/auth/post_login_response.dart';
 import 'package:sasimee/models/response/default_response.dart';
+import 'package:sasimee/models/response/mypage/profile_response.dart';
+import 'package:sasimee/models/request/auth/post_profile_request.dart';
+
 import '../../models/request/auth/post_token_reissue_request.dart';
 import '../../utils/constants.dart';
 
@@ -36,7 +39,17 @@ abstract class AuthApi {
   Future<DefaultResponse> verify(
       @Body() PostEmailVerifyRequest request);
 
+  // 회원가입
   @POST("/user/register")
   Future<DefaultResponse> register(
       @Body() PostRegisterRequest request);
+
+  // 프로필 가져오기
+  @GET("/user/mypage/profile")
+  Future<ProfileResponse> getProfile();
+
+  // 프로필 수정하기
+  @PATCH("/user/mypage/profile/modifiy")
+  Future<void> modifyProfile(
+      @Body() PostProfileRequest request);
 }
