@@ -9,6 +9,7 @@ import 'package:sasimee/models/response/auth/post_email_send_response.dart';
 import 'package:sasimee/models/response/auth/post_login_response.dart';
 import 'package:sasimee/models/response/default_response.dart';
 import 'package:sasimee/models/response/mypage/profile_response.dart';
+import 'package:sasimee/models/request/auth/post_profile_request.dart';
 
 import '../services/api/auth_api.dart';
 import '../services/data/secure_storage_service.dart';
@@ -124,6 +125,19 @@ class AuthRepository {
       }
 
       return null;
+    }
+  }
+
+  /// 프로필 수정하기
+  Future<void> modifyProfile({
+    required String name,
+    required String mobileNumber,
+  }) async {
+    try {
+      final request = PostProfileRequest(name: name, phonenumber: mobileNumber);
+      await _authApi.modifyProfile(request);
+    } catch (e) {
+      logger.e("Failed to update profile.", error: e);
     }
   }
 }

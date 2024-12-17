@@ -141,12 +141,10 @@ class _MypageProfileScreenState extends State<MypageProfileScreen> {
                           onPressed: () async {
                             if (!viewModel.isButtonEnabled) return;
 
-                            final result = await viewModel.done();
+                            await viewModel.update();
                             if (!context.mounted) return;
 
-                            if (result) {
-                              Navigator.of(context).pop();
-                            }
+                            Navigator.of(context).pop();
                           },
                           style: ElevatedButton.styleFrom(
                             minimumSize: const Size(double.infinity, 0),

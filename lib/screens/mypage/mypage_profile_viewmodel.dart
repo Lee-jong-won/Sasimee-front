@@ -76,10 +76,10 @@ class MypageProfileViewModel with ChangeNotifier {
     super.dispose();
   }
 
-  Future<bool> done() async {
+  Future<void> update() {
     final name = _nameController.text.trim();
     final mobileNumber = _mobileNumberController.text.trim();
 
-    return true;
+    return _repository.modifyProfile(name: name, mobileNumber: mobileNumber);
   }
 }
