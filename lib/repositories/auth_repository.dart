@@ -158,5 +158,14 @@ class AuthRepository {
     }
   }
 
+  /// 태그 변경
+  Future<void> modifyTag(List<UserTag> tag) async {
+    try {
+      await _authApi.modifyTag(tag);
+    } catch (e) {
+      logger.e("Failed to modify tag.", error: e);
+    }
+  }
+
 
 }

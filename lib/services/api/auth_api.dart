@@ -57,4 +57,8 @@ abstract class AuthApi {
   // 태그 가져오기
   @GET("/user/mypage/tag")
   Future<List<UserTag>> getTag();
+
+  //  태그 변경
+  @PATCH("/user/mypage/tag/modify")
+  Future<void> modifyTag(@Body() List<UserTag> tag);
 }
