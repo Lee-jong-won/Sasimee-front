@@ -1,11 +1,14 @@
 import 'package:flutter/cupertino.dart';
+import 'package:sasimee/models/posting.dart';
 import 'package:sasimee/models/response/auth/get_profile_response.dart';
 import 'package:sasimee/repositories/auth_repository.dart';
+import 'package:sasimee/repositories/posting_repository.dart';
 
 class MypageMainViewModel with ChangeNotifier {
   late final _pageController = PageController();
 
-  late final _repository = AuthRepository();
+  late final _authRepository = AuthRepository();
+  late final _postingRepository = PostingRepository();
   PageController get pageController => _pageController;
 
   int get index =>
@@ -19,6 +22,14 @@ class MypageMainViewModel with ChangeNotifier {
   }
 
   FrProfile? profile;
+
+  late final applicationDetailsList = Stream.fromFuture(_postingRepository
+      .getCompletePostingList()
+      .then((value) => value?.posts ?? <Posting>[])).asBroadcastStream();
+  late final recruitmentDetailsList = Stream.fromFuture(_postingRepository
+      .getUserPostingList()
+      .then((value) => value?.posts ?? <Posting>[])).asBroadcastStream();
+
   MypageMainViewModel() {
     refresh();
   }
@@ -31,7 +42,7 @@ class MypageMainViewModel with ChangeNotifier {
   }
 
   void refresh() {
-    _repository.getProfile().then((profile) {
+    _authRepository.getProfile().then((profile) {
       this.profile = profile;
       notifyListeners();
     });

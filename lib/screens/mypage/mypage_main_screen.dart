@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:sasimee/enums/experiment_type.dart';
+import 'package:sasimee/models/posting.dart';
 import 'package:sasimee/screens/mypage/mypage_main_viewmodel.dart';
 import 'package:sasimee/screens/mypage/mypage_profile_screen.dart';
 import 'package:sasimee/screens/mypage/mypage_tag_screen.dart';
@@ -95,14 +96,14 @@ class _HeaderWidget extends StatelessWidget {
                   children: [
                     Consumer<MypageMainViewModel>(
                         builder: (context, viewModel, _) {
-                      return Text(
-                        viewModel.profile?.name ?? '',
-                        style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      );
-                    }),
+                          return Text(
+                            viewModel.profile?.name ?? '',
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.w700,
+                            ),
+                          );
+                        }),
                     const SizedBox(height: 5),
                     IntrinsicHeight(
                       child: Row(
@@ -192,7 +193,7 @@ class _HeaderWidget extends StatelessWidget {
               vertical: 4,
             ),
             child:
-                Consumer<MypageMainViewModel>(builder: (context, viewModel, _) {
+            Consumer<MypageMainViewModel>(builder: (context, viewModel, _) {
               final index = viewModel.index;
 
               return Row(
@@ -218,7 +219,7 @@ class _HeaderWidget extends StatelessWidget {
                                 'assets/images/icons/ic_checkbox.svg',
                                 colorFilter: index == 0
                                     ? const ColorFilter.mode(
-                                        Colors.white, BlendMode.srcATop)
+                                    Colors.white, BlendMode.srcATop)
                                     : null,
                               ),
                               const SizedBox(width: 3),
@@ -258,7 +259,7 @@ class _HeaderWidget extends StatelessWidget {
                                 'assets/images/icons/ic_people.svg',
                                 colorFilter: index == 1
                                     ? const ColorFilter.mode(
-                                        Colors.white, BlendMode.srcATop)
+                                    Colors.white, BlendMode.srcATop)
                                     : null,
                               ),
                               const SizedBox(width: 3),
@@ -292,43 +293,53 @@ class _ApplicationDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 24),
-            child: Text(
-              "item_count".tr(namedArgs: {"itemCount": 15.toString()}),
-              textAlign: TextAlign.start,
-              style: const TextStyle(
-                fontSize: 14,
-                color: ColorStyles.subText,
+    final viewModel = Provider.of<MypageMainViewModel>(context);
+
+    return StreamBuilder<List<Posting>>(
+        stream: viewModel.applicationDetailsList,
+        builder: (context, snapshot) {
+          final posts = snapshot.data ?? [];
+
+          return CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding:
+                  const EdgeInsets.symmetric(vertical: 15, horizontal: 24),
+                  child: Text(
+                    "item_count"
+                        .tr(namedArgs: {"itemCount": posts.length.toString()}),
+                    textAlign: TextAlign.start,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: ColorStyles.subText,
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
-        const SliverToBoxAdapter(
-          child: Divider(
-            height: 1,
-            thickness: 1,
-            color: ColorStyles.dividerBackground,
-          ),
-        ),
-        SliverList.separated(
-          itemCount: 15,
-          itemBuilder: (context, index) {
-            return const _ItemWidget(title: '이미지 생성형 AI 사용 목적 조사');
-          },
-          separatorBuilder: (_, __) {
-            return const Divider(
-              height: 1,
-              thickness: 1,
-              color: ColorStyles.dividerBackground,
-            );
-          },
-        )
-      ],
-    );
+              const SliverToBoxAdapter(
+                child: Divider(
+                  height: 1,
+                  thickness: 1,
+                  color: ColorStyles.dividerBackground,
+                ),
+              ),
+              SliverList.separated(
+                itemCount: posts.length,
+                itemBuilder: (context, index) {
+                  return _ItemWidget(posting: posts[index]);
+                },
+                separatorBuilder: (_, __) {
+                  return const Divider(
+                    height: 1,
+                    thickness: 1,
+                    color: ColorStyles.dividerBackground,
+                  );
+                },
+              )
+            ],
+          );
+        });
   }
 }
 
@@ -337,50 +348,60 @@ class _RecruitmentDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverToBoxAdapter(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 24),
-            child: Text(
-              "item_count".tr(namedArgs: {"itemCount": 15.toString()}),
-              textAlign: TextAlign.start,
-              style: const TextStyle(
-                fontSize: 14,
-                color: ColorStyles.subText,
+    final viewModel = Provider.of<MypageMainViewModel>(context);
+
+    return StreamBuilder<List<Posting>>(
+        stream: viewModel.recruitmentDetailsList,
+        builder: (context, snapshot) {
+          final posts = snapshot.data ?? [];
+
+          return CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding:
+                  const EdgeInsets.symmetric(vertical: 15, horizontal: 24),
+                  child: Text(
+                    "item_count"
+                        .tr(namedArgs: {"itemCount": posts.length.toString()}),
+                    textAlign: TextAlign.start,
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: ColorStyles.subText,
+                    ),
+                  ),
+                ),
               ),
-            ),
-          ),
-        ),
-        const SliverToBoxAdapter(
-          child: Divider(
-            height: 1,
-            thickness: 1,
-            color: ColorStyles.dividerBackground,
-          ),
-        ),
-        SliverList.separated(
-          itemCount: 15,
-          itemBuilder: (context, index) {
-            return const _ItemWidget(title: '이미지 생성형 AI 사용 목적 조사');
-          },
-          separatorBuilder: (_, __) {
-            return const Divider(
-              height: 1,
-              thickness: 1,
-              color: ColorStyles.dividerBackground,
-            );
-          },
-        )
-      ],
-    );
+              const SliverToBoxAdapter(
+                child: Divider(
+                  height: 1,
+                  thickness: 1,
+                  color: ColorStyles.dividerBackground,
+                ),
+              ),
+              SliverList.separated(
+                itemCount: posts.length,
+                itemBuilder: (context, index) {
+                  return _ItemWidget(posting: posts[index]);
+                },
+                separatorBuilder: (_, __) {
+                  return const Divider(
+                    height: 1,
+                    thickness: 1,
+                    color: ColorStyles.dividerBackground,
+                  );
+                },
+              )
+            ],
+          );
+        });
   }
 }
 
 class _ItemWidget extends StatelessWidget {
-  final String title;
+  final Posting posting;
 
-  const _ItemWidget({super.key, required this.title});
+  const _ItemWidget({super.key, required this.posting});
 
   @override
   Widget build(BuildContext context) {
@@ -399,16 +420,18 @@ class _ItemWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Text(
-                '㈜네심이',
-                style: TextStyle(
+              Text(
+                posting.author,
+                maxLines: 1,
+                overflow: TextOverflow.clip,
+                style: const TextStyle(
                     fontSize: 11,
                     fontWeight: FontWeight.w500,
                     color: ColorStyles.subText),
               ),
               const SizedBox(height: 7),
               Text(
-                title,
+                posting.title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
@@ -420,7 +443,7 @@ class _ItemWidget extends StatelessWidget {
               Wrap(
                 spacing: 5,
                 runSpacing: 5,
-                children: ['20대', '성별무관', '사회적 행동', '심리'].map((e) {
+                children: posting.tagName.map((e) {
                   return TagItem(
                     text: e,
                     type: ExperimentType.perform,

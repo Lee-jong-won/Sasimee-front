@@ -129,6 +129,7 @@ class SasimeeApp extends StatelessWidget {
     final colorScheme = ColorScheme.fromSeed(seedColor: Colors.white);
 
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'app_name'.tr(),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
