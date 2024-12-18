@@ -37,11 +37,10 @@ class AuthRepository {
   }
 
   /// 로그인
-  Future<PostLoginResponse?> login(
-      String email, String password) async {
+  Future<PostLoginResponse?> login(String email, String password) async {
     try {
-      var loginResponse = await _authApi.postLogin(PostLoginRequest(
-          email: email, password: password));
+      var loginResponse = await _authApi
+          .postLogin(PostLoginRequest(email: email, password: password));
       return loginResponse;
     } catch (e) {
       logger.e("Login Error", error: e);
@@ -135,10 +134,29 @@ class AuthRepository {
     required String mobileNumber,
   }) async {
     try {
-      final request = PatchProfileRequest(name: name, phonenumber: mobileNumber);
+      final request =
+          PatchProfileRequest(name: name, phonenumber: mobileNumber);
       await _authApi.modifyProfile(request);
     } catch (e) {
       logger.e("Failed to update profile.", error: e);
     }
   }
+
+  /// 태그 가져오기
+  Future<List<UserTag>> getTag() async {
+    try {
+      var response = await _authApi.getTag();
+      return response;
+    } catch (e) {
+      logger.e("Failed to register.", error: e);
+
+      if (e is DioException && e.response != null) {
+        return [];
+      }
+
+      return [];
+    }
+  }
+
+
 }

@@ -9,6 +9,7 @@ import 'package:sasimee/models/response/auth/post_login_response.dart';
 import 'package:sasimee/models/response/default_response.dart';
 import 'package:sasimee/models/response/auth/get_profile_response.dart';
 import 'package:sasimee/models/request/auth/patch_profile_request.dart';
+import 'package:sasimee/models/user_tag.dart';
 
 import '../../models/request/auth/post_token_reissue_request.dart';
 import '../../utils/constants.dart';
@@ -52,4 +53,8 @@ abstract class AuthApi {
   @PATCH("/user/mypage/profile/modifiy")
   Future<void> modifyProfile(
       @Body() PatchProfileRequest request);
+
+  // 태그 가져오기
+  @GET("/user/mypage/tag")
+  Future<List<UserTag>> getTag();
 }

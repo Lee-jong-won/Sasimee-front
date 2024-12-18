@@ -1,6 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'post_profile_request.g.dart';
+part 'patch_profile_request.g.dart';
 
 @JsonSerializable()
 class PatchProfileRequest {
@@ -10,7 +10,7 @@ class PatchProfileRequest {
   PatchProfileRequest({required this.name, required this.phonenumber});
 
   factory PatchProfileRequest.fromJson(Map<String, dynamic> json) =>
-      _$PostProfileRequestFromJson(json);
+      _$PatchProfileRequestFromJson(json);
 
-  Map<String, dynamic> toJson() => _$PostProfileRequestToJson(this);
+  Map<String, dynamic> toJson() => _$PatchProfileRequestToJson(this);
 }
