@@ -8,8 +8,9 @@ import 'package:sasimee/models/request/auth/post_register_request.dart';
 import 'package:sasimee/models/response/auth/post_email_send_response.dart';
 import 'package:sasimee/models/response/auth/post_login_response.dart';
 import 'package:sasimee/models/response/default_response.dart';
-import 'package:sasimee/models/response/mypage/profile_response.dart';
-import 'package:sasimee/models/request/auth/post_profile_request.dart';
+import 'package:sasimee/models/response/auth/get_profile_response.dart';
+import 'package:sasimee/models/request/auth/patch_profile_request.dart';
+import 'package:sasimee/models/user_tag.dart';
 
 import '../services/api/auth_api.dart';
 import '../services/data/secure_storage_service.dart';
@@ -134,7 +135,7 @@ class AuthRepository {
     required String mobileNumber,
   }) async {
     try {
-      final request = PostProfileRequest(name: name, phonenumber: mobileNumber);
+      final request = PatchProfileRequest(name: name, phonenumber: mobileNumber);
       await _authApi.modifyProfile(request);
     } catch (e) {
       logger.e("Failed to update profile.", error: e);
