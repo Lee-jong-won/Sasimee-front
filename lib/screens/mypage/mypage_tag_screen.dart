@@ -29,8 +29,6 @@ class _MypageTagScreenState extends State<MypageTagScreen> {
         backgroundColor: Colors.white,
         appBar: AppBar(title: Text('tag_management'.tr())),
         body: Builder(builder: (context) {
-          final viewModel = Provider.of<MypageTagViewModel>(context);
-
           return SafeArea(
             child: Column(
               children: [
@@ -50,77 +48,114 @@ class _MypageTagScreenState extends State<MypageTagScreen> {
                             style: const TextStyle(fontSize: 16),
                           ),
                           const SizedBox(height: 8),
-                          SelectableTagList(
-                            items: AgeGroup.values.map((e) => e.label).toList(),
-                            type: TagType.experiment,
-                            isMultiSelect: false,
-                            initialSelection: viewModel.selectedAgeGroups,
-                            onSelectionChanged: (values) =>
-                                viewModel.setSelectedAgeGroups(values),
-                          ),
+                          Consumer<MypageTagViewModel>(
+                              builder: (context, viewModel, _) {
+                                final key =
+                                ValueKey('gender_${viewModel.isInitialized}');
+
+                                return SelectableTagList(
+                                  key: key,
+                                  items:
+                                  AgeGroup.values.map((e) => e.label).toList(),
+                                  type: TagType.experiment,
+                                  isMultiSelect: false,
+                                  initialSelection: viewModel.selectedAgeGroups,
+                                  onSelectionChanged: (values) =>
+                                      viewModel.setSelectedAgeGroups(values),
+                                );
+                              }),
                           const SizedBox(height: 32),
                           Text(
                             'tag_area'.tr(),
                             style: const TextStyle(fontSize: 16),
                           ),
                           const SizedBox(height: 8),
-                          SelectableTagList(
-                            items:
-                                AreaGroup.values.map((e) => e.label).toList(),
-                            type: TagType.experiment,
-                            isMultiSelect: true,
-                            initialSelection: viewModel.selectedAreaGroups,
-                            onSelectionChanged: (values) =>
-                                viewModel.setSelectedAreaGroups(values),
-                            canPreview: true,
-                          ),
+                          Consumer<MypageTagViewModel>(
+                              builder: (context, viewModel, _) {
+                                final key =
+                                ValueKey('area_${viewModel.isInitialized}');
+
+                                return SelectableTagList(
+                                  key: key,
+                                  items:
+                                  AreaGroup.values.map((e) => e.label).toList(),
+                                  type: TagType.experiment,
+                                  isMultiSelect: true,
+                                  initialSelection: viewModel.selectedAreaGroups,
+                                  onSelectionChanged: (values) =>
+                                      viewModel.setSelectedAreaGroups(values),
+                                  canPreview: true,
+                                );
+                              }),
                           const SizedBox(height: 32),
                           Text(
                             'tag_type'.tr(),
                             style: const TextStyle(fontSize: 16),
                           ),
                           const SizedBox(height: 8),
-                          SelectableTagList(
-                            items:
-                                TypeGroup.values.map((e) => e.label).toList(),
-                            type: TagType.experiment,
-                            isMultiSelect: true,
-                            initialSelection: viewModel.selectedTypeGroups,
-                            onSelectionChanged: (values) =>
-                                viewModel.setSelectedTypeGroups(values),
-                          ),
+                          Consumer<MypageTagViewModel>(
+                              builder: (context, viewModel, _) {
+                                final key =
+                                ValueKey('type_${viewModel.isInitialized}');
+
+                                return SelectableTagList(
+                                  key: key,
+                                  items:
+                                  TypeGroup.values.map((e) => e.label).toList(),
+                                  type: TagType.experiment,
+                                  isMultiSelect: true,
+                                  initialSelection: viewModel.selectedTypeGroups,
+                                  onSelectionChanged: (values) =>
+                                      viewModel.setSelectedTypeGroups(values),
+                                );
+                              }),
                           const SizedBox(height: 32),
                           Text(
                             'tag_gender'.tr(),
                             style: const TextStyle(fontSize: 16),
                           ),
                           const SizedBox(height: 8),
-                          SelectableTagList(
-                            items:
-                                GenderGroup.values.map((e) => e.label).toList(),
-                            type: TagType.experiment,
-                            isMultiSelect: true,
-                            initialSelection: viewModel.selectedGenderGroups,
-                            onSelectionChanged: (values) =>
-                                viewModel.setSelectedGenderGroups(values),
-                          ),
+                          Consumer<MypageTagViewModel>(
+                              builder: (context, viewModel, _) {
+                                final key =
+                                ValueKey('gender_${viewModel.isInitialized}');
+
+                                return SelectableTagList(
+                                  key: key,
+                                  items: GenderGroup.values
+                                      .map((e) => e.label)
+                                      .toList(),
+                                  type: TagType.experiment,
+                                  isMultiSelect: true,
+                                  initialSelection: viewModel.selectedGenderGroups,
+                                  onSelectionChanged: (values) =>
+                                      viewModel.setSelectedGenderGroups(values),
+                                );
+                              }),
                           const SizedBox(height: 32),
                           Text(
                             'tag_subject'.tr(),
                             style: const TextStyle(fontSize: 16),
                           ),
                           const SizedBox(height: 8),
-                          SelectableTagList(
-                            items: SubjectGroup.values
-                                .map((e) => e.label)
-                                .toList(),
-                            type: TagType.experiment,
-                            isMultiSelect: false,
-                            initialSelection: viewModel.selectedSubjectGroups,
-                            onSelectionChanged: (values) =>
-                                viewModel.setSelectedSubjectGroups(values),
-                            canPreview: true,
-                          ),
+                          Consumer<MypageTagViewModel>(
+                              builder: (context, viewModel, _) {
+                                final key =
+                                ValueKey('subject_${viewModel.isInitialized}');
+
+                                return SelectableTagList(
+                                  key: key,
+                                  items: SubjectGroup.values
+                                      .map((e) => e.label)
+                                      .toList(),
+                                  type: TagType.experiment,
+                                  isMultiSelect: true,
+                                  initialSelection: viewModel.selectedSubjectGroups,
+                                  onSelectionChanged: (values) =>
+                                      viewModel.setSelectedSubjectGroups(values),
+                                  canPreview: true,
+                                );
+                              }),
                         ],
                       ),
                     ),
@@ -134,25 +169,23 @@ class _MypageTagScreenState extends State<MypageTagScreen> {
                   ),
                   child: Consumer<MypageTagViewModel>(
                       builder: (context, viewModel, _) {
-                    return ElevatedButton(
-                        onPressed: () async {
-                          if (!viewModel.isButtonEnabled) return;
+                        return ElevatedButton(
+                            onPressed: () async {
+                              if (!viewModel.isButtonEnabled) return;
 
-                          final result = await viewModel.done();
-                          if (!context.mounted) return;
+                              await viewModel.done();
+                              if (!context.mounted) return;
 
-                          if (result) {
-                            Navigator.of(context).pop();
-                          }
-                        },
-                        style: ElevatedButton.styleFrom(
-                          minimumSize: const Size(double.infinity, 0),
-                          backgroundColor: viewModel.isButtonEnabled
-                              ? ColorStyles.primaryBlue
-                              : ColorStyles.dividerBackground,
-                        ),
-                        child: Text('enter_complete'.tr()));
-                  }),
+                              Navigator.of(context).pop();
+                            },
+                            style: ElevatedButton.styleFrom(
+                              minimumSize: const Size(double.infinity, 0),
+                              backgroundColor: viewModel.isButtonEnabled
+                                  ? ColorStyles.primaryBlue
+                                  : ColorStyles.dividerBackground,
+                            ),
+                            child: Text('enter_complete'.tr()));
+                      }),
                 ),
               ],
             ),

@@ -8,8 +8,9 @@ import 'package:sasimee/models/request/auth/post_register_request.dart';
 import 'package:sasimee/models/response/auth/post_email_send_response.dart';
 import 'package:sasimee/models/response/auth/post_login_response.dart';
 import 'package:sasimee/models/response/default_response.dart';
-import 'package:sasimee/models/response/mypage/profile_response.dart';
-import 'package:sasimee/models/request/auth/post_profile_request.dart';
+import 'package:sasimee/models/response/auth/get_profile_response.dart';
+import 'package:sasimee/models/request/auth/patch_profile_request.dart';
+import 'package:sasimee/models/user_tag.dart';
 
 import '../services/api/auth_api.dart';
 import '../services/data/secure_storage_service.dart';
@@ -36,11 +37,10 @@ class AuthRepository {
   }
 
   /// 로그인
-  Future<PostLoginResponse?> login(
-      String email, String password) async {
+  Future<PostLoginResponse?> login(String email, String password) async {
     try {
-      var loginResponse = await _authApi.postLogin(PostLoginRequest(
-          email: email, password: password));
+      var loginResponse = await _authApi
+          .postLogin(PostLoginRequest(email: email, password: password));
       return loginResponse;
     } catch (e) {
       logger.e("Login Error", error: e);
@@ -134,10 +134,38 @@ class AuthRepository {
     required String mobileNumber,
   }) async {
     try {
-      final request = PostProfileRequest(name: name, phonenumber: mobileNumber);
+      final request =
+          PatchProfileRequest(name: name, phonenumber: mobileNumber);
       await _authApi.modifyProfile(request);
     } catch (e) {
       logger.e("Failed to update profile.", error: e);
     }
   }
+
+  /// 태그 가져오기
+  Future<List<UserTag>> getTag() async {
+    try {
+      var response = await _authApi.getTag();
+      return response;
+    } catch (e) {
+      logger.e("Failed to register.", error: e);
+
+      if (e is DioException && e.response != null) {
+        return [];
+      }
+
+      return [];
+    }
+  }
+
+  /// 태그 변경
+  Future<void> modifyTag(List<UserTag> tag) async {
+    try {
+      await _authApi.modifyTag(tag);
+    } catch (e) {
+      logger.e("Failed to modify tag.", error: e);
+    }
+  }
+
+
 }
