@@ -14,6 +14,10 @@ import 'package:sasimee/screens/main/experiment/perform/perform_info_screen.dart
 import 'package:sasimee/screens/main/experiment/survey/survey_create_screen.dart';
 import 'package:sasimee/screens/main/experiment/survey/survey_inspect_screen.dart';
 import 'package:sasimee/screens/main/main_screen.dart';
+import 'package:sasimee/screens/password/password_auth_screen.dart';
+import 'package:sasimee/screens/password/password_forgot_screen.dart';
+import 'package:sasimee/screens/password/password_reset_complete_screen.dart';
+import 'package:sasimee/screens/password/password_reset_screen.dart';
 import 'package:sasimee/screens/mypage/mypage_main_screen.dart';
 import 'package:sasimee/screens/mypage/mypage_profile_screen.dart';
 import 'package:sasimee/screens/mypage/mypage_tag_screen.dart';
@@ -89,6 +93,13 @@ void main() async {
 /// 라우팅 설정 (pushNamed를 통해 쉽게 화면 라우팅을 할 수 있다)
 final route = {
   LoginScreen.routeName: (context) => const LoginScreen(),
+  PasswordForgotScreen.routeName: (context) => const PasswordForgotScreen(),
+  PasswordAuthScreen.routeName: (context) {
+    String email = ModalRoute.of(context)!.settings.arguments as String;
+    return PasswordAuthScreen(email: email);
+  },
+  PasswordResetScreen.routeName: (context) => const PasswordResetScreen(),
+  PasswordResetCompleteScreen.routeName: (context) => const PasswordResetCompleteScreen(),
   SignupScreen.routeName: (context) => const SignupScreen(),
   SignupAuthScreen.routeName: (context) {
     final request =
