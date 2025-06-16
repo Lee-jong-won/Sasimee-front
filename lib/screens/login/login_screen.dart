@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sasimee/screens/login/login_viewmodel.dart';
 import 'package:sasimee/screens/main/main_screen.dart';
+import 'package:sasimee/screens/password/password_forgot_screen.dart';
 import 'package:sasimee/screens/signup/signup_screen.dart';
 import 'package:sasimee/styles/icons.dart';
 
@@ -35,7 +36,7 @@ class LoginScreen extends StatelessWidget {
               children: [
                 _appDescriptionLayout(),
                 const SizedBox(height: 70),
-                _contentInputLayout(loginViewModel),
+                _contentInputLayout(loginViewModel, context),
                 const Spacer(),
                 _bottomLoginAndSignupLayout(loginViewModel, context),
               ],
@@ -75,7 +76,7 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget _contentInputLayout(LoginViewModel viewModel) {
+  Widget _contentInputLayout(LoginViewModel viewModel, BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.end,
@@ -98,8 +99,7 @@ class LoginScreen extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            //TODO: 비밀번호 찾기 페이지로 이동
-            print("비밀번호 찾기 버튼 클릭");
+            Navigator.of(context).pushNamed(PasswordForgotScreen.routeName);
           },
           child: Text(
             'forget_password'.tr(),
