@@ -1,9 +1,65 @@
 # Sasimee (사심이)
 > 사회·심리 실험 중개 플랫폼
+<img src="https://github.com/user-attachments/assets/d1984468-93ed-4df1-9280-fefc50aa513f">
+
+</br>
+
+## 📸 Screenshot
+
+<table>
+  <tr>
+    <td align="center"><b>메인 실험 추천</b></td>
+    <td align="center"><b>설문 링크 이동</b></td>
+    <td align="center"><b>설문 검수</b></td>
+    <td align="center"><b>설문 정보 확인 및 지원</b></td>
+  </tr>
+    <tr>
+      <td>
+
+
+https://github.com/user-attachments/assets/af67fa39-e9b2-49ed-be14-5c56133eea76
+
+
+
+</td>
+    <td>
+
+
+https://github.com/user-attachments/assets/595e5fa9-aaa7-48cb-9cc2-0776b6817778
+
+
+</td>
+    <td>
+
+
+https://github.com/user-attachments/assets/996b0c06-2a16-41f3-8366-71c1325e98be
+
+
+</td>
+<td>
+
+
+https://github.com/user-attachments/assets/121517cf-873d-4c3c-acf2-3ef5fc0e6d83
+
+
+
+</td>
+
+  </tr>
+
+</table>
+
+
+
+</br></br>
+
+
 
 
 ## 📼 Demo Video
-[![Video Label](https://github.com/user-attachments/assets/d1984468-93ed-4df1-9280-fefc50aa513f)](https://www.youtube.com/embed/S1RvFmkT4Gs)
+[![Video Label](https://github.com/user-attachments/assets/90a30e80-0211-4cc0-8bac-bbef7c583297)](https://www.youtube.com/embed/S1RvFmkT4Gs)
+
+</br></br>
 
 
 
@@ -28,6 +84,7 @@
 | image_picker                 | 이미지 선택(갤러리/카메라)을 위한 라이브러리             |
 | url_launcher                 | 외부 URL 실행(인앱 브라우저 등)을 위한 라이브러리                    |
 
+</br></br>
 
 
 ## 👥 Contributors
